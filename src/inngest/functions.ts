@@ -1,74 +1,118 @@
-import prisma from "@/lib/db";
+import { NonRetriableError } from "inngest";
 import { inngest } from "./client";
-import * as Sentry from "@sentry/nextjs";
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { createOpenAI } from "@ai-sdk/openai";
-import { createAnthropic } from "@ai-sdk/anthropic";
-import { generateText } from "ai";
+import prisma from "@/lib/db";
+import { topologicalSort } from "./utils";
+import { ExecutionStatus, NodeType } from "@/generated/prisma";
+import { getExecutor } from "@/features/executions/lib/executor-registry";
+import { httpRequestChannel } from "./channels/http-request";
+import { manualTriggerChannel } from "./channels/manual-trigger";
+import { googleFormTriggerChannel } from "./channels/google-form-trigger";
+import { stripeTriggerChannel } from "./channels/stripe-trigger";
+import { geminiChannel } from "./channels/gemini";
+import { openAiChannel } from "./channels/openai";
+import { anthropicChannel } from "./channels/anthropic";
+import { discordChannel } from "./channels/discord";
+import { slackChannel } from "./channels/slack";
 
-const google = createGoogleGenerativeAI();
-const openai = createOpenAI();
-const anthropic = createAnthropic();
-
-export const execute = inngest.createFunction(
-  { id: "execute-ai" },
-  { event: "execute/ai" },
-  async ({ event, step }) => {
-    await step.sleep("pretend", "5s");
-
-    Sentry.logger.info('User triggered test log', { log_source: 'sentry_test' })
-    console.warn("Something is missing");
-    console.error("This is an error i want to track");
-
-    const { steps: geminiSteps } = await step.ai.wrap(
-      "gemini-generate-text",
-      generateText,
-      {
-        model: google("gemini-2.5-flash"),
-        system: "You are a helpful assistant.",
-        prompt: "What is 2 + 2?",
-        experimental_telemetry: {
-          isEnabled: true,
-          recordInputs: true,
-          recordOutputs: true,
+export const executeWorkflow = inngest.createFunction(
+  { 
+    id: "execute-workflow",
+    retries: process.env.NODE_ENV === "production" ? 3 : 0,
+    onFailure: async ({ event, step }) => {
+      return prisma.execution.update({
+        where: { inngestEventId: event.data.event.id },
+        data: {
+          status: ExecutionStatus.FAILED,
+          error: event.data.error.message,
+          errorStack: event.data.error.stack,
         },
-      }
-    );
+      });
+    },
+  },
+  { 
+    event: "workflows/execute.workflow",
+    channels: [
+      httpRequestChannel(),
+      manualTriggerChannel(),
+      googleFormTriggerChannel(),
+      stripeTriggerChannel(),
+      geminiChannel(),
+      openAiChannel(),
+      anthropicChannel(),
+      discordChannel(),
+      slackChannel(),
+    ],
+  },
+  async ({ event, step, publish }) => {
+    const inngestEventId = event.id;
+    const workflowId = event.data.workflowId;
 
-    const { steps: openaiSteps } = await step.ai.wrap(
-      "openai-generate-text",
-      generateText,
-      {
-        model: openai("gpt-4"),
-        system: "You are a helpful assistant.",
-        prompt: "What is 2 + 2?",
-        experimental_telemetry: {
-          isEnabled: true,
-          recordInputs: true,
-          recordOutputs: true,
-        },
-      }
-    );
+    if (!inngestEventId || !workflowId) {
+      throw new NonRetriableError("Event ID or workflow ID is missing");
+    }
 
-    const { steps: anthropicSteps } = await step.ai.wrap(
-      "anthropic-generate-text",
-      generateText,
-      {
-        model: anthropic("claude-sonnet-4-5"),
-        system: "You are a helpful assistant.",
-        prompt: "What is 2 + 2?",
-        experimental_telemetry: {
-          isEnabled: true,
-          recordInputs: true,
-          recordOutputs: true,
+    await step.run("create-execution", async () => {
+      return prisma.execution.create({
+        data: {
+          workflowId,
+          inngestEventId,
         },
-      }
-    );
+      });
+    });
+
+    const sortedNodes = await step.run("prepare-workflow", async () => {
+      const workflow = await prisma.workflow.findUniqueOrThrow({
+        where: { id: workflowId },
+        include: {
+          nodes: true,
+          connections: true,
+        },
+      });
+
+      return topologicalSort(workflow.nodes, workflow.connections);
+    });
+
+    const userId = await step.run("find-user-id", async () => {
+      const workflow = await prisma.workflow.findUniqueOrThrow({
+        where: { id: workflowId },
+        select: {
+          userId: true,
+        },
+      });
+
+      return workflow.userId;
+    });
+
+    // Initialize context with any initial data from the trigger
+    let context = event.data.initialData || {};
+
+    // Execute each node
+    for (const node of sortedNodes) {
+      const executor = getExecutor(node.type as NodeType);
+      context = await executor({
+        data: node.data as Record<string, unknown>,
+        nodeId: node.id,
+        userId,
+        context,
+        step,
+        publish,
+      });
+    }
+
+    await step.run("update-execution", async () => {
+      return prisma.execution.update({
+        where: { inngestEventId, workflowId },
+        data: {
+          status: ExecutionStatus.SUCCESS,
+          completedAt: new Date(),
+          output: context,
+        },
+      })
+    });
 
     return {
-      geminiSteps,
-      openaiSteps,
-      anthropicSteps,
+      workflowId,
+      result: context,
     };
   },
 );
