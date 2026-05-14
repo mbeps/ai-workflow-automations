@@ -34,7 +34,7 @@ export const UpgradeModal = ({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => authClient.checkout({ slug: "pro" })}
+            onClick={() => authClient.checkout({ slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string })}
           >
             Upgrade Now
           </AlertDialogAction>

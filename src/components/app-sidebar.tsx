@@ -101,7 +101,7 @@ export const AppSidebar = () => {
               <SidebarMenuButton
                 tooltip="Upgade to Pro"
                 className="gap-x-4 h-10 px-4"
-                onClick={() => authClient.checkout({ slug: "pro" })}
+                onClick={() => authClient.checkout({ slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string })}
               >
                 <StarIcon className="h-4 w-4" />
                 <span>Upgrade to Pro</span>
