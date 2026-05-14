@@ -28,22 +28,10 @@ export const executeWorkflow = inngest.createFunction(
         },
       });
     },
+    triggers: [{ event: "workflows/execute.workflow" }],
   },
-  {
-    event: "workflows/execute.workflow",
-    channels: [
-      httpRequestChannel(),
-      manualTriggerChannel(),
-      googleFormTriggerChannel(),
-      stripeTriggerChannel(),
-      geminiChannel(),
-      openAiChannel(),
-      anthropicChannel(),
-      discordChannel(),
-      slackChannel(),
-    ],
-  },
-  async ({ event, step, publish }) => {
+  async ({ event, step }) => {
+    const publish = () => {}; // Placeholder since realtime was removed
     const inngestEventId = event.id;
     const workflowId = event.data.workflowId;
 
