@@ -11,5 +11,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  inngest:
+    image: inngest/inngest:latest
+    ports:
+      - "8288:8288"
+    command:
+      - /usr/bin/inngest
+      - dev
+      - --host
+      - 0.0.0.0
+      - -u
+      - http://host.docker.internal:3000/api/inngest
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 volumes:
   pgdata:
