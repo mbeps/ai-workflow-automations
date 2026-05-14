@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CredentialType } from "@prisma/client";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -34,7 +35,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useCredentialsByType } from "@/features/credentials/hooks/use-credentials";
 import { getModelProviderLogo } from "@/features/credentials/models";
-import { CredentialType } from "@/generated/prisma";
 
 const formSchema = z.object({
   variableName: z

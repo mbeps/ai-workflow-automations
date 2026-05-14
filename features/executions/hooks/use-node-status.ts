@@ -8,7 +8,7 @@ interface UseNodeStatusOptions {
   channel: string;
   topic: string;
   refreshToken: () => Promise<Realtime.Subscribe.Token>;
-};
+}
 
 export function useNodeStatus({
   nodeId,
@@ -31,7 +31,7 @@ export function useNodeStatus({
     // Find the latest message for this node
     const latestMessage = data
       .filter(
-        (msg) => 
+        (msg) =>
           msg.kind === "data" &&
           msg.channel === channel &&
           msg.topic === topic &&
@@ -52,4 +52,4 @@ export function useNodeStatus({
   }, [data, nodeId, channel, topic]);
 
   return status;
-};
+}

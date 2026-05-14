@@ -1,4 +1,4 @@
-import { CredentialType } from "@/generated/prisma";
+import type { CredentialType } from "@prisma/client";
 
 export interface ModelProvider {
   type: CredentialType;

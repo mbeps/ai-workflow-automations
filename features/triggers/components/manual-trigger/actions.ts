@@ -16,4 +16,4 @@ export async function fetchManualTriggerRealtimeToken(): Promise<ManualTriggerTo
   });
 
   return token;
-};
+}

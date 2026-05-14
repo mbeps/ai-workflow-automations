@@ -1,8 +1,8 @@
 import Handlebars from "handlebars";
 import { NonRetriableError } from "inngest";
 import ky, { type Options as KyOptions } from "ky";
-import type { NodeExecutor } from "@/types/node-executor";
 import { httpRequestChannel } from "@/inngest/channels/http-request";
+import type { NodeExecutor } from "@/types/node-executor";
 
 Handlebars.registerHelper("json", (context) => {
   const jsonString = JSON.stringify(context, null, 2);
@@ -41,7 +41,9 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async ({
             status: "error",
           }),
         );
-        throw new NonRetriableError("HTTP Request node: No endpoint configured");
+        throw new NonRetriableError(
+          "HTTP Request node: No endpoint configured",
+        );
       }
 
       if (!data.variableName) {
@@ -51,7 +53,9 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async ({
             status: "error",
           }),
         );
-        throw new NonRetriableError("HTTP Request node: Variable name not configured");
+        throw new NonRetriableError(
+          "HTTP Request node: Variable name not configured",
+        );
       }
 
       if (!data.method) {
@@ -95,7 +99,7 @@ export const httpRequestExecutor: NodeExecutor<HttpRequestData> = async ({
       return {
         ...context,
         [data.variableName]: responsePayload,
-      }
+      };
     });
 
     await publish(

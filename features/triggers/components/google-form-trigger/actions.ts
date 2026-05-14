@@ -16,4 +16,4 @@ export async function fetchGoogleFormTriggerRealtimeToken(): Promise<GoogleFormT
   });
 
   return token;
-};
+}

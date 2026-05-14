@@ -1,6 +1,7 @@
 "use client";
 
 import { createId } from "@paralleldrive/cuid2";
+import { CredentialType, NodeType } from "@prisma/client";
 import { useReactFlow } from "@xyflow/react";
 import { GlobeIcon, MousePointerIcon } from "lucide-react";
 import { useCallback } from "react";
@@ -14,7 +15,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { getModelProviderLogo } from "@/features/credentials/models";
-import { CredentialType, NodeType } from "@/generated/prisma";
 import { Separator } from "./ui/separator";
 
 export type NodeTypeOption = {

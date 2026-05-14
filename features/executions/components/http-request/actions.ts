@@ -16,4 +16,4 @@ export async function fetchHttpRequestRealtimeToken(): Promise<HttpRequestToken>
   });
 
   return token;
-};
+}

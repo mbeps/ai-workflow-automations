@@ -1,9 +1,9 @@
 "use client";
 
+import { CredentialType } from "@prisma/client";
 import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
 import { getModelProviderLogo } from "@/features/credentials/models";
-import { CredentialType } from "@/generated/prisma";
 import { ANTHROPIC_CHANNEL_NAME } from "@/inngest/channels/anthropic";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";

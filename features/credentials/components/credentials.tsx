@@ -1,5 +1,6 @@
 "use client";
 
+import type { Credential } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,7 +15,6 @@ import {
   ErrorView,
   LoadingView,
 } from "@/components/entity-components";
-import type { Credential } from "@/generated/prisma";
 import { useEntitySearch } from "@/hooks/use-entity-search";
 import {
   useRemoveCredential,

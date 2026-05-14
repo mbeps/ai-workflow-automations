@@ -32,13 +32,13 @@ export const auth = betterAuth({
             {
               productId: process.env.POLAR_PRODUCT_ID as string,
               slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
-            }
+            },
           ],
           successUrl: process.env.POLAR_SUCCESS_URL,
           authenticatedUsersOnly: true,
         }),
         portal(),
       ],
-    })
-  ]
+    }),
+  ],
 });

@@ -16,4 +16,4 @@ export async function fetchStripeTriggerRealtimeToken(): Promise<StripeTriggerTo
   });
 
   return token;
-};
+}

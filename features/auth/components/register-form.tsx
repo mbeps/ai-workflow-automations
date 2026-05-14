@@ -26,15 +26,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
-const registerSchema = z.object({
-  email: z.email("Please enter a valid email address"),
-  password: z.string().min(1, "Password is required"),
-  confirmPassword: z.string(),
-})
-.refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"]
-});
+const registerSchema = z
+  .object({
+    email: z.email("Please enter a valid email address"),
+    password: z.string().min(1, "Password is required"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
@@ -51,29 +52,35 @@ export function RegisterForm() {
   });
 
   const signInGithub = async () => {
-    await authClient.signIn.social({
-      provider: "github",
-    }, {
-      onSuccess: () => {
-        router.push("/");
+    await authClient.signIn.social(
+      {
+        provider: "github",
       },
-      onError: () => {
-        toast.error("Something went wrong");
+      {
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: () => {
+          toast.error("Something went wrong");
+        },
       },
-    });
+    );
   };
 
   const signInGoogle = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-    }, {
-      onSuccess: () => {
-        router.push("/");
+    await authClient.signIn.social(
+      {
+        provider: "google",
       },
-      onError: () => {
-        toast.error("Something went wrong");
+      {
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: () => {
+          toast.error("Something went wrong");
+        },
       },
-    });
+    );
   };
 
   const onSubmit = async (values: RegisterFormValues) => {
@@ -90,9 +97,9 @@ export function RegisterForm() {
         },
         onError: (ctx) => {
           toast.error(ctx.error.message);
-        }
-      }
-    )
+        },
+      },
+    );
   };
 
   const isPending = form.formState.isSubmitting;
@@ -101,12 +108,8 @@ export function RegisterForm() {
     <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle>
-            Get Started
-          </CardTitle>
-          <CardDescription>
-            Create your account to get started
-          </CardDescription>
+          <CardTitle>Get Started</CardTitle>
+          <CardDescription>Create your account to get started</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -120,7 +123,12 @@ export function RegisterForm() {
                     type="button"
                     disabled={isPending}
                   >
-                    <Image alt="GitHub" src="/logos/github.svg" width={20} height={20} />
+                    <Image
+                      alt="GitHub"
+                      src="/logos/github.svg"
+                      width={20}
+                      height={20}
+                    />
                     Continue with GitHub
                   </Button>
                   <Button
@@ -130,7 +138,12 @@ export function RegisterForm() {
                     type="button"
                     disabled={isPending}
                   >
-                    <Image alt="Google" src="/logos/google.svg" width={20} height={20} />
+                    <Image
+                      alt="Google"
+                      src="/logos/google.svg"
+                      width={20}
+                      height={20}
+                    />
                     Continue with Google
                   </Button>
                 </div>
@@ -203,4 +216,4 @@ export function RegisterForm() {
       </Card>
     </div>
   );
-};
+}

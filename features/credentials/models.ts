@@ -1,4 +1,4 @@
-import { CredentialType } from "@/generated/prisma";
+import { CredentialType } from "@prisma/client";
 import type { ModelProvider } from "@/types/model-provider";
 
 export const MODEL_PROVIDERS: ModelProvider[] = [
@@ -20,5 +20,7 @@ export const MODEL_PROVIDERS: ModelProvider[] = [
 ];
 
 export const getModelProviderLogo = (type: CredentialType): string => {
-  return MODEL_PROVIDERS.find((p) => p.type === type)?.logo || "/logos/openai.svg";
+  return (
+    MODEL_PROVIDERS.find((p) => p.type === type)?.logo || "/logos/openai.svg"
+  );
 };
