@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import { decode } from "html-entities";
 import { NonRetriableError } from "inngest";
-import type { NodeExecutor } from "@/features/executions/types";
+import type { NodeExecutor } from "@/types/node-executor";
 import { discordChannel } from "@/inngest/channels/discord";
 import ky from "ky";
 

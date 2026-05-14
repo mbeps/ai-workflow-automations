@@ -1,10 +1,5 @@
 import { CredentialType } from "@/generated/prisma";
-
-export interface ModelProvider {
-  type: CredentialType;
-  label: string;
-  logo: string;
-}
+import type { ModelProvider } from "@/types/model-provider";
 
 export const MODEL_PROVIDERS: ModelProvider[] = [
   {

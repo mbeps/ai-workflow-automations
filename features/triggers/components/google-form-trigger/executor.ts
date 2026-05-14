@@ -1,4 +1,4 @@
-import type { NodeExecutor } from "@/features/executions/types";
+import type { NodeExecutor } from "@/types/node-executor";
 import { googleFormTriggerChannel } from "@/inngest/channels/google-form-trigger";
 
 type GoogleFormTriggerData = Record<string, unknown>;

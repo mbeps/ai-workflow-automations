@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import { NonRetriableError } from "inngest";
 import { generateText } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import type { NodeExecutor } from "@/features/executions/types";
+import type { NodeExecutor } from "@/types/node-executor";
 import { geminiChannel } from "@/inngest/channels/gemini";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";

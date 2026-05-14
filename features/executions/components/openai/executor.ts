@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import { NonRetriableError } from "inngest";
 import { generateText } from "ai";
 import { createOpenAI } from "@ai-sdk/openai";
-import type { NodeExecutor } from "@/features/executions/types";
+import type { NodeExecutor } from "@/types/node-executor";
 import { openAiChannel } from "@/inngest/channels/openai";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
