@@ -8,7 +8,8 @@ import { OPENAI_CHANNEL_NAME } from "@/inngest/channels/openai";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchOpenAiRealtimeToken } from "./actions";
-import { OpenAiDialog, type OpenAiFormValues } from "./dialog";
+import { OpenAiDialog } from "./dialog";
+import { type OpenAiFormValues } from "@/schemas/executions/ai-model-schemas";
 
 type OpenAiNodeData = {
   variableName?: string;

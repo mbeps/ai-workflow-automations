@@ -6,7 +6,8 @@ import { DISCORD_CHANNEL_NAME } from "@/inngest/channels/discord";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchDiscordRealtimeToken } from "./actions";
-import { DiscordDialog, type DiscordFormValues } from "./dialog";
+import { DiscordDialog } from "./dialog";
+import { type DiscordFormValues } from "@/schemas/executions/discord-schema";
 
 type DiscordNodeData = {
   webhookUrl?: string;

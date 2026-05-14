@@ -25,19 +25,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
-
-const registerSchema = z
-  .object({
-    email: z.email("Please enter a valid email address"),
-    password: z.string().min(1, "Password is required"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
-
-type RegisterFormValues = z.infer<typeof registerSchema>;
+import { registerSchema, RegisterFormValues } from "@/schemas/auth/register-schema";
 
 export function RegisterForm() {
   const router = useRouter();

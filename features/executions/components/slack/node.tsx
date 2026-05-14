@@ -6,7 +6,8 @@ import { SLACK_CHANNEL_NAME } from "@/inngest/channels/slack";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchSlackRealtimeToken } from "./actions";
-import { SlackDialog, type SlackFormValues } from "./dialog";
+import { SlackDialog } from "./dialog";
+import { type SlackFormValues } from "@/schemas/executions/slack-schema";
 
 type SlackNodeData = {
   webhookUrl?: string;

@@ -8,7 +8,8 @@ import { ANTHROPIC_CHANNEL_NAME } from "@/inngest/channels/anthropic";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchAnthropicRealtimeToken } from "./actions";
-import { AnthropicDialog, type AnthropicFormValues } from "./dialog";
+import { AnthropicDialog } from "./dialog";
+import { type AnthropicFormValues } from "@/schemas/executions/ai-model-schemas";
 
 type AnthropicNodeData = {
   variableName?: string;

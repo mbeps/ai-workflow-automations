@@ -4,6 +4,13 @@ import { PAGINATION } from "@/config/constants";
 import prisma from "@/lib/db";
 import { encrypt } from "@/lib/encryption";
 import {
+  credentialByTypeSchema,
+  credentialGetManySchema,
+  credentialIdSchema,
+  credentialUpdateSchema,
+  credentialUpsertSchema,
+} from "@/schemas/credentials/credential-router-schemas";
+import {
   createTRPCRouter,
   premiumProcedure,
   protectedProcedure,
@@ -11,13 +18,7 @@ import {
 
 export const credentialsRouter = createTRPCRouter({
   create: premiumProcedure
-    .input(
-      z.object({
-        name: z.string().min(1, "Name is required"),
-        type: z.enum(CredentialType),
-        value: z.string().min(1, "Value is required"),
-      }),
-    )
+    .input(credentialUpsertSchema)
     .mutation(({ ctx, input }) => {
       const { name, value, type } = input;
 
@@ -31,7 +32,7 @@ export const credentialsRouter = createTRPCRouter({
       });
     }),
   remove: protectedProcedure
-    .input(z.object({ id: z.string() }))
+    .input(credentialIdSchema)
     .mutation(({ ctx, input }) => {
       return prisma.credential.delete({
         where: {
@@ -41,14 +42,7 @@ export const credentialsRouter = createTRPCRouter({
       });
     }),
   update: protectedProcedure
-    .input(
-      z.object({
-        id: z.string(),
-        name: z.string().min(1, "Name is required"),
-        type: z.enum(CredentialType),
-        value: z.string().min(1, "Value is required"),
-      }),
-    )
+    .input(credentialUpdateSchema)
     .mutation(({ ctx, input }) => {
       const { id, name, type, value } = input;
 
@@ -62,24 +56,14 @@ export const credentialsRouter = createTRPCRouter({
       });
     }),
   getOne: protectedProcedure
-    .input(z.object({ id: z.string() }))
+    .input(credentialIdSchema)
     .query(({ ctx, input }) => {
       return prisma.credential.findUniqueOrThrow({
         where: { id: input.id, userId: ctx.auth.user.id },
       });
     }),
   getMany: protectedProcedure
-    .input(
-      z.object({
-        page: z.number().default(PAGINATION.DEFAULT_PAGE),
-        pageSize: z
-          .number()
-          .min(PAGINATION.MIN_PAGE_SIZE)
-          .max(PAGINATION.MAX_PAGE_SIZE)
-          .default(PAGINATION.DEFAULT_PAGE_SIZE),
-        search: z.string().default(""),
-      }),
-    )
+    .input(credentialGetManySchema)
     .query(async ({ ctx, input }) => {
       const { page, pageSize, search } = input;
 
@@ -124,11 +108,7 @@ export const credentialsRouter = createTRPCRouter({
       };
     }),
   getByType: protectedProcedure
-    .input(
-      z.object({
-        type: z.enum(CredentialType),
-      }),
-    )
+    .input(credentialByTypeSchema)
     .query(({ input, ctx }) => {
       const { type } = input;
 

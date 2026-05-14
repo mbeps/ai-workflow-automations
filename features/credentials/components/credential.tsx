@@ -39,14 +39,10 @@ import {
 } from "../hooks/use-credentials";
 
 import { MODEL_PROVIDERS } from "../models";
-
-const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  type: z.enum(CredentialType),
-  value: z.string().min(1, "API key is required"),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import {
+  credentialSchema as formSchema,
+  CredentialFormValues as FormValues,
+} from "@/schemas/credentials/credential-schema";
 
 interface CredentialFormProps {
   initialData?: {

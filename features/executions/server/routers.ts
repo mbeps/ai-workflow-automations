@@ -1,11 +1,15 @@
 import z from "zod";
 import { PAGINATION } from "@/config/constants";
 import prisma from "@/lib/db";
+import {
+  executionGetManySchema,
+  executionIdSchema,
+} from "@/schemas/executions/execution-router-schemas";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const executionsRouter = createTRPCRouter({
   getOne: protectedProcedure
-    .input(z.object({ id: z.string() }))
+    .input(executionIdSchema)
     .query(({ ctx, input }) => {
       return prisma.execution.findUniqueOrThrow({
         where: {
@@ -25,16 +29,7 @@ export const executionsRouter = createTRPCRouter({
       });
     }),
   getMany: protectedProcedure
-    .input(
-      z.object({
-        page: z.number().default(PAGINATION.DEFAULT_PAGE),
-        pageSize: z
-          .number()
-          .min(PAGINATION.MIN_PAGE_SIZE)
-          .max(PAGINATION.MAX_PAGE_SIZE)
-          .default(PAGINATION.DEFAULT_PAGE_SIZE),
-      }),
-    )
+    .input(executionGetManySchema)
     .query(async ({ ctx, input }) => {
       const { page, pageSize } = input;
 
