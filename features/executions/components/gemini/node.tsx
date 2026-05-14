@@ -1,12 +1,14 @@
 "use client";
 
-import { useReactFlow, type Node, type NodeProps } from "@xyflow/react";
+import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
-import { BaseExecutionNode } from "../base-execution-node";
-import { GeminiDialog, GeminiFormValues } from "./dialog";
-import { useNodeStatus } from "../../hooks/use-node-status";
-import { fetchGeminiRealtimeToken } from "./actions";
+import { getModelProviderLogo } from "@/features/credentials/models";
+import { CredentialType } from "@/generated/prisma";
 import { GEMINI_CHANNEL_NAME } from "@/inngest/channels/gemini";
+import { useNodeStatus } from "../../hooks/use-node-status";
+import { BaseExecutionNode } from "../base-execution-node";
+import { fetchGeminiRealtimeToken } from "./actions";
+import { GeminiDialog, type GeminiFormValues } from "./dialog";
 
 type GeminiNodeData = {
   variableName?: string;
@@ -31,18 +33,20 @@ export const GeminiNode = memo((props: NodeProps<GeminiNodeType>) => {
   const handleOpenSettings = () => setDialogOpen(true);
 
   const handleSubmit = (values: GeminiFormValues) => {
-    setNodes((nodes) => nodes.map((node) => {
-      if (node.id === props.id) {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            ...values,
-          }
+    setNodes((nodes) =>
+      nodes.map((node) => {
+        if (node.id === props.id) {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              ...values,
+            },
+          };
         }
-      }
-      return node;
-    }))
+        return node;
+      }),
+    );
   };
 
   const nodeData = props.data;
@@ -61,7 +65,7 @@ export const GeminiNode = memo((props: NodeProps<GeminiNodeType>) => {
       <BaseExecutionNode
         {...props}
         id={props.id}
-        icon="/logos/gemini.svg"
+        icon={getModelProviderLogo(CredentialType.GEMINI)}
         name="Gemini"
         status={nodeStatus}
         description={description}
@@ -69,7 +73,7 @@ export const GeminiNode = memo((props: NodeProps<GeminiNodeType>) => {
         onDoubleClick={handleOpenSettings}
       />
     </>
-  )
+  );
 });
 
 GeminiNode.displayName = "GeminiNode";

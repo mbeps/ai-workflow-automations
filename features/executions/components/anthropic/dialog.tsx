@@ -1,5 +1,11 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -18,14 +24,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { useCredentialsByType } from "@/features/credentials/hooks/use-credentials";
-import { CredentialType } from "@/generated/prisma";
 import {
   Select,
   SelectContent,
@@ -33,14 +31,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Image from "next/image";
+import { Textarea } from "@/components/ui/textarea";
+import { useCredentialsByType } from "@/features/credentials/hooks/use-credentials";
+import { getModelProviderLogo } from "@/features/credentials/models";
+import { CredentialType } from "@/generated/prisma";
 
 const formSchema = z.object({
   variableName: z
     .string()
     .min(1, { message: "Variable name is required" })
-    .regex(/^[A-Za-z_$][A-Za-z0-9_$]*$/, { 
-      message: "Variable name must start with a letter or underscore and container only letters, numbers, and underscores",
+    .regex(/^[A-Za-z_$][A-Za-z0-9_$]*$/, {
+      message:
+        "Variable name must start with a letter or underscore and container only letters, numbers, and underscores",
     }),
   credentialId: z.string().min(1, "Credential is required"),
   systemPrompt: z.string().optional(),
@@ -54,7 +56,7 @@ interface Props {
   onOpenChange: (open: boolean) => void;
   onSubmit: (values: z.infer<typeof formSchema>) => void;
   defaultValues?: Partial<AnthropicFormValues>;
-};
+}
 
 export const AnthropicDialog = ({
   open,
@@ -62,10 +64,8 @@ export const AnthropicDialog = ({
   onSubmit,
   defaultValues = {},
 }: Props) => {
-  const { 
-    data: credentials,
-    isLoading: isLoadingCredentials,
-  } = useCredentialsByType(CredentialType.ANTHROPIC);
+  const { data: credentials, isLoading: isLoadingCredentials } =
+    useCredentialsByType(CredentialType.ANTHROPIC);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -117,10 +117,7 @@ export const AnthropicDialog = ({
                 <FormItem>
                   <FormLabel>Variable Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="myAnthropic"
-                      {...field}
-                    />
+                    <Input placeholder="myAnthropic" {...field} />
                   </FormControl>
                   <FormDescription>
                     Use this name to reference the result in other nodes:{" "}
@@ -140,10 +137,7 @@ export const AnthropicDialog = ({
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    disabled={
-                      isLoadingCredentials
-                      || !credentials?.length
-                    }
+                    disabled={isLoadingCredentials || !credentials?.length}
                   >
                     <FormControl>
                       <SelectTrigger className="w-full">
@@ -152,13 +146,12 @@ export const AnthropicDialog = ({
                     </FormControl>
                     <SelectContent>
                       {credentials?.map((credential) => (
-                        <SelectItem
-                          key={credential.id}
-                          value={credential.id}
-                        >
+                        <SelectItem key={credential.id} value={credential.id}>
                           <div className="flex items-center gap-2">
                             <Image
-                              src="/logos/anthropic.svg"
+                              src={getModelProviderLogo(
+                                CredentialType.ANTHROPIC,
+                              )}
                               alt="Anthropic"
                               width={16}
                               height={16}
@@ -178,41 +171,44 @@ export const AnthropicDialog = ({
               control={form.control}
               name="systemPrompt"
               render={({ field }) => (
-              <FormItem>
-                <FormLabel>System Prompt (Optional)</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="You are a helpful assistant."
-                    className="min-h-[80px] font-mono text-sm"
-                    {...field}
-                  />
-                </FormControl>
+                <FormItem>
+                  <FormLabel>System Prompt (Optional)</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="You are a helpful assistant."
+                      className="min-h-[80px] font-mono text-sm"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormDescription>
-                    Sets the behavior of the assistant. Use {"{{variables}}"} for simple values or {"{{json variable}}"} to stringify objects
+                    Sets the behavior of the assistant. Use {"{{variables}}"}{" "}
+                    for simple values or {"{{json variable}}"} to stringify
+                    objects
                   </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <FormField
               control={form.control}
               name="userPrompt"
               render={({ field }) => (
-              <FormItem>
-                <FormLabel>User Prompt</FormLabel>
-                <FormControl>
-                  <Textarea
-                     placeholder="Summarize this text: {{json httpResponse.data}}"
-                    className="min-h-[120px] font-mono text-sm"
-                    {...field}
-                  />
-                </FormControl>
+                <FormItem>
+                  <FormLabel>User Prompt</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Summarize this text: {{json httpResponse.data}}"
+                      className="min-h-[120px] font-mono text-sm"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormDescription>
-                    The prompt to send to the AI. Use {"{{variables}}"} for simple values or {"{{json variable}}"} to stringify objects
+                    The prompt to send to the AI. Use {"{{variables}}"} for
+                    simple values or {"{{json variable}}"} to stringify objects
                   </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <DialogFooter className="mt-4">
               <Button type="submit">Save</Button>

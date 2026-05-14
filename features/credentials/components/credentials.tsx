@@ -1,24 +1,26 @@
 "use client";
 
 import { formatDistanceToNow } from "date-fns";
-import { 
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import {
   EmptyView,
-  EntityContainer, 
-  EntityHeader, 
-  EntityItem, 
-  EntityList, 
-  EntityPagination, 
+  EntityContainer,
+  EntityHeader,
+  EntityItem,
+  EntityList,
+  EntityPagination,
   EntitySearch,
   ErrorView,
-  LoadingView
+  LoadingView,
 } from "@/components/entity-components";
-import { useRemoveCredential, useSuspenseCredentials } from "../hooks/use-credentials"
-import { useRouter } from "next/navigation";
-import { useCredentialsParams } from "../hooks/use-credentials-params";
-import { useEntitySearch } from "@/hooks/use-entity-search";
 import type { Credential } from "@/generated/prisma";
-import { CredentialType } from "@/generated/prisma";
-import Image from "next/image";
+import { useEntitySearch } from "@/hooks/use-entity-search";
+import {
+  useRemoveCredential,
+  useSuspenseCredentials,
+} from "../hooks/use-credentials";
+import { useCredentialsParams } from "../hooks/use-credentials-params";
 
 export const CredentialsSearch = () => {
   const [params, setParams] = useCredentialsParams();
@@ -76,7 +78,7 @@ export const CredentialsPagination = () => {
 };
 
 export const CredentialsContainer = ({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) => {
@@ -114,24 +116,16 @@ export const CredentialsEmpty = () => {
   );
 };
 
-const credentialLogos: Record<CredentialType, string> = {
-  [CredentialType.OPENAI]: "/logos/openai.svg",
-  [CredentialType.ANTHROPIC]: "/logos/anthropic.svg",
-  [CredentialType.GEMINI]: "/logos/gemini.svg",
-};
+import { getModelProviderLogo } from "../models";
 
-export const CredentialItem = ({
-  data,
-}: { 
-  data: Credential
-}) => {
+export const CredentialItem = ({ data }: { data: Credential }) => {
   const removeCredential = useRemoveCredential();
 
   const handleRemove = () => {
     removeCredential.mutate({ id: data.id });
   };
 
-  const logo = credentialLogos[data.type] || "/logos/openai.svg";
+  const logo = getModelProviderLogo(data.type) || "/logos/openai.svg";
 
   return (
     <EntityItem
@@ -152,5 +146,5 @@ export const CredentialItem = ({
       onRemove={handleRemove}
       isRemoving={removeCredential.isPending}
     />
-  )
+  );
 };

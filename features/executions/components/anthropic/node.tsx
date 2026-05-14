@@ -1,12 +1,14 @@
 "use client";
 
-import { useReactFlow, type Node, type NodeProps } from "@xyflow/react";
+import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
-import { BaseExecutionNode } from "../base-execution-node";
-import { AnthropicDialog, AnthropicFormValues } from "./dialog";
-import { useNodeStatus } from "../../hooks/use-node-status";
-import { fetchAnthropicRealtimeToken } from "./actions";
+import { getModelProviderLogo } from "@/features/credentials/models";
+import { CredentialType } from "@/generated/prisma";
 import { ANTHROPIC_CHANNEL_NAME } from "@/inngest/channels/anthropic";
+import { useNodeStatus } from "../../hooks/use-node-status";
+import { BaseExecutionNode } from "../base-execution-node";
+import { fetchAnthropicRealtimeToken } from "./actions";
+import { AnthropicDialog, type AnthropicFormValues } from "./dialog";
 
 type AnthropicNodeData = {
   variableName?: string;
@@ -31,18 +33,20 @@ export const AnthropicNode = memo((props: NodeProps<AnthropicNodeType>) => {
   const handleOpenSettings = () => setDialogOpen(true);
 
   const handleSubmit = (values: AnthropicFormValues) => {
-    setNodes((nodes) => nodes.map((node) => {
-      if (node.id === props.id) {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            ...values,
-          }
+    setNodes((nodes) =>
+      nodes.map((node) => {
+        if (node.id === props.id) {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              ...values,
+            },
+          };
         }
-      }
-      return node;
-    }))
+        return node;
+      }),
+    );
   };
 
   const nodeData = props.data;
@@ -61,7 +65,7 @@ export const AnthropicNode = memo((props: NodeProps<AnthropicNodeType>) => {
       <BaseExecutionNode
         {...props}
         id={props.id}
-        icon="/logos/anthropic.svg"
+        icon={getModelProviderLogo(CredentialType.ANTHROPIC)}
         name="Anthropic"
         status={nodeStatus}
         description={description}
@@ -69,7 +73,7 @@ export const AnthropicNode = memo((props: NodeProps<AnthropicNodeType>) => {
         onDoubleClick={handleOpenSettings}
       />
     </>
-  )
+  );
 });
 
 AnthropicNode.displayName = "AnthropicNode";
