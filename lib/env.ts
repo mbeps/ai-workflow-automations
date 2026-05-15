@@ -22,6 +22,7 @@ const envSchema = z.object({
   SENTRY_AUTH_TOKEN: z.string().optional(),
 
   // Polar
+  NEXT_PUBLIC_ENABLE_POLAR: z.string().optional().default("true"),
   POLAR_ACCESS_TOKEN: z.string().optional(),
   POLAR_SUCCESS_URL: z.string().url().optional(),
   POLAR_PRODUCT_ID: z.string().optional(),
@@ -36,8 +37,9 @@ const envSchema = z.object({
     .default("development"),
 
   // Inngest
-  INNGEST_EVENT_KEY: z.string().optional(),
-  INNGEST_SIGNING_KEY: z.string().optional(),
+  INNGEST_EVENT_KEY: z.string().optional().default("local"),
+  INNGEST_SIGNING_KEY: z.string().optional().default("local"),
+  INNGEST_BASE_URL: z.string().url().optional(),
 
   // Next.js / Vercel / CI
   VERCEL_URL: z.string().optional(),

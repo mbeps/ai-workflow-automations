@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { cache } from "react";
 import superjson from "superjson";
 import { auth } from "@/lib/auth";
+import { env } from "@/lib/env";
 import { polarClient } from "@/lib/polar";
 export const createTRPCContext = cache(async () => {
   /**
@@ -40,6 +41,10 @@ export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
 });
 export const premiumProcedure = protectedProcedure.use(
   async ({ ctx, next }) => {
+    if (env.NEXT_PUBLIC_ENABLE_POLAR !== "true") {
+      return next({ ctx: { ...ctx, customer: null } });
+    }
+
     const customer = await polarClient.customers.getStateExternal({
       externalId: ctx.auth.user.id,
     });

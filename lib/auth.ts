@@ -24,22 +24,26 @@ export const auth = betterAuth({
     },
   },
   plugins: [
-    polar({
-      client: polarClient,
-      createCustomerOnSignUp: true,
-      use: [
-        checkout({
-          products: [
-            {
-              productId: env.POLAR_PRODUCT_ID as string,
-              slug: env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
-            },
-          ],
-          successUrl: env.POLAR_SUCCESS_URL,
-          authenticatedUsersOnly: true,
-        }),
-        portal(),
-      ],
-    }),
+    ...(env.NEXT_PUBLIC_ENABLE_POLAR === "true"
+      ? [
+          polar({
+            client: polarClient,
+            createCustomerOnSignUp: true,
+            use: [
+              checkout({
+                products: [
+                  {
+                    productId: env.POLAR_PRODUCT_ID as string,
+                    slug: env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
+                  },
+                ],
+                successUrl: env.POLAR_SUCCESS_URL,
+                authenticatedUsersOnly: true,
+              }),
+              portal(),
+            ],
+          }),
+        ]
+      : []),
   ],
 });
