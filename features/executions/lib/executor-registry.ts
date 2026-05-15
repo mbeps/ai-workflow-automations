@@ -8,6 +8,7 @@ import { discordExecutor } from "../components/discord/executor";
 import { geminiExecutor } from "../components/gemini/executor";
 import { httpRequestExecutor } from "../components/http-request/executor";
 import { openAiExecutor } from "../components/openai/executor";
+import { openRouterExecutor } from "../components/openrouter/executor";
 import { slackExecutor } from "../components/slack/executor";
 
 export const executorRegistry: Record<NodeType, NodeExecutor> = {
@@ -19,6 +20,7 @@ export const executorRegistry: Record<NodeType, NodeExecutor> = {
   [NodeType.GEMINI]: geminiExecutor,
   [NodeType.ANTHROPIC]: anthropicExecutor,
   [NodeType.OPENAI]: openAiExecutor,
+  [NodeType.OPENROUTER]: openRouterExecutor,
   [NodeType.DISCORD]: discordExecutor,
   [NodeType.SLACK]: slackExecutor,
 };

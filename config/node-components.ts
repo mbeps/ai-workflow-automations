@@ -6,6 +6,7 @@ import { DiscordNode } from "@/features/executions/components/discord/node";
 import { GeminiNode } from "@/features/executions/components/gemini/node";
 import { HttpRequestNode } from "@/features/executions/components/http-request/node";
 import { OpenAiNode } from "@/features/executions/components/openai/node";
+import { OpenRouterNode } from "@/features/executions/components/openrouter/node";
 import { SlackNode } from "@/features/executions/components/slack/node";
 import { GoogleFormTrigger } from "@/features/triggers/components/google-form-trigger/node";
 import { ManualTriggerNode } from "@/features/triggers/components/manual-trigger/node";
@@ -19,6 +20,7 @@ export const nodeComponents = {
   [NodeType.STRIPE_TRIGGER]: StripeTriggerNode,
   [NodeType.GEMINI]: GeminiNode,
   [NodeType.OPENAI]: OpenAiNode,
+  [NodeType.OPENROUTER]: OpenRouterNode,
   [NodeType.ANTHROPIC]: AnthropicNode,
   [NodeType.DISCORD]: DiscordNode,
   [NodeType.SLACK]: SlackNode,

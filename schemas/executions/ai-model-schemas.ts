@@ -16,3 +16,4 @@ export const aiModelSchema = z.object({
 export type AnthropicFormValues = z.infer<typeof aiModelSchema>;
 export type GeminiFormValues = z.infer<typeof aiModelSchema>;
 export type OpenAiFormValues = z.infer<typeof aiModelSchema>;
+export type OpenRouterFormValues = z.infer<typeof aiModelSchema>;

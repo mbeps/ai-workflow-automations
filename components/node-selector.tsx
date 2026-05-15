@@ -73,6 +73,12 @@ const executionNodes: NodeTypeOption[] = [
     icon: getModelProviderLogo(CredentialType.ANTHROPIC),
   },
   {
+    type: NodeType.OPENROUTER,
+    label: "OpenRouter",
+    description: "Uses OpenRouter to generate text",
+    icon: getModelProviderLogo(CredentialType.OPENROUTER),
+  },
+  {
     type: NodeType.DISCORD,
     label: "Discord",
     description: "Send a message to Discord",
