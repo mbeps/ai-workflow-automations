@@ -17,6 +17,11 @@ export const MODEL_PROVIDERS: ModelProvider[] = [
     label: "Gemini",
     logo: "/logos/gemini.svg",
   },
+  {
+    type: CredentialType.OPENROUTER,
+    label: "OpenRouter",
+    logo: "/logos/openrouter.svg",
+  },
 ];
 
 export const getModelProviderLogo = (type: CredentialType): string => {
