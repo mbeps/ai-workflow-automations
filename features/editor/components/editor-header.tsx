@@ -4,6 +4,7 @@ import { useAtomValue } from "jotai";
 import { SaveIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { ROUTES } from "@/routes";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -129,7 +130,7 @@ export const EditorBreadcrumbs = ({ workflowId }: { workflowId: string }) => {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link prefetch href="/workflows">
+            <Link prefetch href={ROUTES.WORKFLOWS.INDEX.path}>
               Workflows
             </Link>
           </BreadcrumbLink>

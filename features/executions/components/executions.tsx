@@ -9,6 +9,7 @@ import {
   Loader2Icon,
   XCircleIcon,
 } from "lucide-react";
+import { ROUTES } from "@/routes";
 import {
   EmptyView,
   EntityContainer,
@@ -132,7 +133,7 @@ export const ExecutionItem = ({
 
   return (
     <EntityItem
-      href={`/executions/${data.id}`}
+      href={ROUTES.EXECUTIONS.DETAIL(data.id).path}
       title={formatStatus(data.status)}
       subtitle={subtitle}
       image={

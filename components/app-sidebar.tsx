@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
 import { authClient } from "@/lib/auth-client";
+import { ROUTES } from "@/routes";
 
 const menuItems = [
   {
@@ -32,17 +33,17 @@ const menuItems = [
       {
         title: "Workflows",
         icon: FolderOpenIcon,
-        url: "/workflows",
+        url: ROUTES.WORKFLOWS.INDEX.path,
       },
       {
         title: "Credentials",
         icon: KeyIcon,
-        url: "/credentials",
+        url: ROUTES.CREDENTIALS.INDEX.path,
       },
       {
         title: "Executions",
         icon: HistoryIcon,
-        url: "/executions",
+        url: ROUTES.EXECUTIONS.INDEX.path,
       },
     ],
   },
@@ -58,7 +59,7 @@ export const AppSidebar = () => {
       <SidebarHeader>
         <SidebarMenuItem>
           <SidebarMenuButton asChild className="gap-x-4 h-10 px-4">
-            <Link href="/" prefetch>
+            <Link href={ROUTES.HOME.path} prefetch>
               <Image
                 src="/logos/logo.svg"
                 alt="Nodebase"
@@ -80,8 +81,8 @@ export const AppSidebar = () => {
                     <SidebarMenuButton
                       tooltip={item.title}
                       isActive={
-                        item.url === "/"
-                          ? pathname === "/"
+                        item.url === (ROUTES.HOME.path as string)
+                          ? pathname === ROUTES.HOME.path
                           : pathname.startsWith(item.url)
                       }
                       asChild
@@ -135,7 +136,7 @@ export const AppSidebar = () => {
                 authClient.signOut({
                   fetchOptions: {
                     onSuccess: () => {
-                      router.push("/login");
+                      router.push(ROUTES.AUTH.LOGIN.path);
                     },
                   },
                 })

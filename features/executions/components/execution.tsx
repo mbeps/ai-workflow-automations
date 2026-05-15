@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { ROUTES } from "@/routes";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -76,7 +77,7 @@ export const ExecutionView = ({ executionId }: { executionId: string }) => {
             <Link
               prefetch
               className="text-sm hover:underline text-primary"
-              href={`/workflows/${execution.workflowId}`}
+              href={ROUTES.WORKFLOWS.EDITOR(execution.workflowId).path}
             >
               {execution.workflow.name}
             </Link>

@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { ROUTES } from "@/routes";
 import z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -79,7 +80,7 @@ export const CredentialForm = ({ initialData }: CredentialFormProps) => {
     } else {
       await createCredential.mutateAsync(values, {
         onSuccess: (data) => {
-          router.push(`/credentials/${data.id}`);
+          router.push(ROUTES.CREDENTIALS.DETAIL(data.id).path);
         },
         onError: (error) => {
           handleError(error);
@@ -178,7 +179,7 @@ export const CredentialForm = ({ initialData }: CredentialFormProps) => {
                   {isEdit ? "Update" : "Create"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/credentials" prefetch>
+                  <Link href={ROUTES.CREDENTIALS.INDEX.path} prefetch>
                     Cancel
                   </Link>
                 </Button>

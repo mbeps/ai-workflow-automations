@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+import { ROUTES } from "@/routes";
 import { loginSchema, LoginFormValues } from "@/schemas/auth/login-schema";
 
 export function LoginForm() {
@@ -45,7 +46,7 @@ export function LoginForm() {
       },
       {
         onSuccess: () => {
-          router.push("/");
+          router.push(ROUTES.HOME.path);
         },
         onError: () => {
           toast.error("Something went wrong");
@@ -61,7 +62,7 @@ export function LoginForm() {
       },
       {
         onSuccess: () => {
-          router.push("/");
+          router.push(ROUTES.HOME.path);
         },
         onError: () => {
           toast.error("Something went wrong");
@@ -75,11 +76,11 @@ export function LoginForm() {
       {
         email: values.email,
         password: values.password,
-        callbackURL: "/",
+        callbackURL: ROUTES.HOME.path,
       },
       {
         onSuccess: () => {
-          router.push("/");
+          router.push(ROUTES.HOME.path);
         },
         onError: (ctx) => {
           toast.error(ctx.error.message);
@@ -174,7 +175,7 @@ export function LoginForm() {
                 </div>
                 <div className="text-center text-sm">
                   Don&apos;t have an account?{" "}
-                  <Link href="/signup" className="underline underline-offset-4">
+                  <Link href={ROUTES.AUTH.SIGNUP.path} className="underline underline-offset-4">
                     Sign up
                   </Link>
                 </div>

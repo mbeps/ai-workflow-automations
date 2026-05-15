@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "./auth";
+import { ROUTES } from "../routes";
 
 export const requireAuth = async () => {
   const session = await auth.api.getSession({
@@ -8,7 +9,7 @@ export const requireAuth = async () => {
   });
 
   if (!session) {
-    redirect("/login");
+    redirect(ROUTES.AUTH.LOGIN.path);
   }
 
   return session;
@@ -20,6 +21,6 @@ export const requireUnauth = async () => {
   });
 
   if (session) {
-    redirect("/");
+    redirect(ROUTES.HOME.path);
   }
 };

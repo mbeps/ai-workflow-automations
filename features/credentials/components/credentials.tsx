@@ -4,6 +4,7 @@ import type { Credential } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { ROUTES } from "@/routes";
 import {
   EmptyView,
   EntityContainer,
@@ -56,7 +57,7 @@ export const CredentialsHeader = ({ disabled }: { disabled?: boolean }) => {
     <EntityHeader
       title="Credentials"
       description="Create and manage your credentials"
-      newButtonHref="/credentials/new"
+      newButtonHref={ROUTES.CREDENTIALS.CREATE.path}
       newButtonLabel="New credential"
       disabled={disabled}
     />
@@ -105,7 +106,7 @@ export const CredentialsEmpty = () => {
   const router = useRouter();
 
   const handleCreate = () => {
-    router.push(`/credentials/new`);
+    router.push(ROUTES.CREDENTIALS.CREATE.path);
   };
 
   return (
@@ -129,7 +130,7 @@ export const CredentialItem = ({ data }: { data: Credential }) => {
 
   return (
     <EntityItem
-      href={`/credentials/${data.id}`}
+      href={ROUTES.CREDENTIALS.DETAIL(data.id).path}
       title={data.name}
       subtitle={
         <>

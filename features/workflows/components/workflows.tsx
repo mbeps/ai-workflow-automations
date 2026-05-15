@@ -4,6 +4,7 @@ import type { Workflow } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 import { WorkflowIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ROUTES } from "@/routes";
 import {
   EmptyView,
   EntityContainer,
@@ -61,7 +62,7 @@ export const WorkflowsHeader = ({ disabled }: { disabled?: boolean }) => {
   const handleCreate = () => {
     createWorkflow.mutate(undefined, {
       onSuccess: (data) => {
-        router.push(`/workflows/${data.id}`);
+        router.push(ROUTES.WORKFLOWS.EDITOR(data.id).path);
       },
       onError: (error) => {
         handleError(error);
@@ -133,7 +134,7 @@ export const WorkflowsEmpty = () => {
         handleError(error);
       },
       onSuccess: (data) => {
-        router.push(`/workflows/${data.id}`);
+        router.push(ROUTES.WORKFLOWS.EDITOR(data.id).path);
       },
     });
   };
@@ -158,7 +159,7 @@ export const WorkflowItem = ({ data }: { data: Workflow }) => {
 
   return (
     <EntityItem
-      href={`/workflows/${data.id}`}
+      href={ROUTES.WORKFLOWS.EDITOR(data.id).path}
       title={data.name}
       subtitle={
         <>
