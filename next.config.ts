@@ -1,15 +1,19 @@
-import {withSentryConfig} from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
+import { env } from "./lib/env";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  outputFileTracingExcludes: {
+    "*": ["./generated/prisma/**"],
+  },
   async redirects() {
     return [
       {
         source: "/",
         destination: "/workflows",
         permanent: false,
-      }
+      },
     ];
   },
 };
@@ -23,7 +27,7 @@ export default withSentryConfig(nextConfig, {
   project: "nodebase",
 
   // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  silent: !env.CI,
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
@@ -37,12 +41,12 @@ export default withSentryConfig(nextConfig, {
   // side errors will fail.
   tunnelRoute: "/monitoring",
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
+  // Tree-shaking and health check options moved to webpack block
+  // Note: These may not be supported with Turbopack yet but align with recommended config
+  webpack: {
+    treeshake: {
+      removeDebugLogging: true,
+    },
+    automaticVercelMonitors: true,
+  },
 });
