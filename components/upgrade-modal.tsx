@@ -11,6 +11,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { authClient } from "@/lib/auth-client";
+import { env } from "@/lib/env";
 
 interface UpgradeModalProps {
   open: boolean;
@@ -33,7 +34,7 @@ export const UpgradeModal = ({ open, onOpenChange }: UpgradeModalProps) => {
           <AlertDialogAction
             onClick={() =>
               authClient.checkout({
-                slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
+                slug: env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
               })
             }
           >

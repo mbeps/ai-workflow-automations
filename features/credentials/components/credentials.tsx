@@ -4,7 +4,6 @@ import type { Credential } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/routes";
 import {
   EmptyView,
   EntityContainer,
@@ -17,6 +16,7 @@ import {
   LoadingView,
 } from "@/components/entity-components";
 import { useEntitySearch } from "@/hooks/use-entity-search";
+import { ROUTES } from "@/routes";
 import {
   useRemoveCredential,
   useSuspenseCredentials,

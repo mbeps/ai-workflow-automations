@@ -5,11 +5,11 @@ import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
 import { getModelProviderLogo } from "@/features/credentials/models";
 import { ANTHROPIC_CHANNEL_NAME } from "@/inngest/channels/anthropic";
+import type { AnthropicFormValues } from "@/schemas/executions/ai-model-schemas";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchAnthropicRealtimeToken } from "./actions";
 import { AnthropicDialog } from "./dialog";
-import { type AnthropicFormValues } from "@/schemas/executions/ai-model-schemas";
 
 type AnthropicNodeData = {
   variableName?: string;

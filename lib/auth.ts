@@ -2,6 +2,7 @@ import { checkout, polar, portal } from "@polar-sh/better-auth";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "@/lib/db";
+import { env } from "@/lib/env";
 import { polarClient } from "./polar";
 
 export const auth = betterAuth({
@@ -14,12 +15,12 @@ export const auth = betterAuth({
   },
   socialProviders: {
     github: {
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      clientId: env.GITHUB_CLIENT_ID as string,
+      clientSecret: env.GITHUB_CLIENT_SECRET as string,
     },
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID as string,
+      clientSecret: env.GOOGLE_CLIENT_SECRET as string,
     },
   },
   plugins: [
@@ -30,11 +31,11 @@ export const auth = betterAuth({
         checkout({
           products: [
             {
-              productId: process.env.POLAR_PRODUCT_ID as string,
-              slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
+              productId: env.POLAR_PRODUCT_ID as string,
+              slug: env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
             },
           ],
-          successUrl: process.env.POLAR_SUCCESS_URL,
+          successUrl: env.POLAR_SUCCESS_URL,
           authenticatedUsersOnly: true,
         }),
         portal(),

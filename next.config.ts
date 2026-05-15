@@ -1,5 +1,6 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
+import { env } from "./lib/env";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
@@ -26,7 +27,7 @@ export default withSentryConfig(nextConfig, {
   project: "nodebase",
 
   // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
+  silent: !env.CI,
 
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
@@ -48,8 +49,4 @@ export default withSentryConfig(nextConfig, {
     },
     automaticVercelMonitors: true,
   },
-
-  
-
-  
 });

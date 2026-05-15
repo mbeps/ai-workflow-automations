@@ -26,7 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { ROUTES } from "@/routes";
-import { loginSchema, LoginFormValues } from "@/schemas/auth/login-schema";
+import { type LoginFormValues, loginSchema } from "@/schemas/auth/login-schema";
 
 export function LoginForm() {
   const router = useRouter();
@@ -175,7 +175,10 @@ export function LoginForm() {
                 </div>
                 <div className="text-center text-sm">
                   Don&apos;t have an account?{" "}
-                  <Link href={ROUTES.AUTH.SIGNUP.path} className="underline underline-offset-4">
+                  <Link
+                    href={ROUTES.AUTH.SIGNUP.path}
+                    className="underline underline-offset-4"
+                  >
                     Sign up
                   </Link>
                 </div>

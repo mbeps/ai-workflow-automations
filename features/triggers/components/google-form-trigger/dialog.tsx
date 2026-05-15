@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { env } from "@/lib/env";
 import { generateGoogleFormScript } from "./utils";
 
 interface Props {
@@ -25,7 +26,7 @@ export const GoogleFormTriggerDialog = ({ open, onOpenChange }: Props) => {
   const workflowId = params.workflowId as string;
 
   // Construct the webhook URL
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const baseUrl = env.NEXT_PUBLIC_APP_URL;
   const webhookUrl = `${baseUrl}/api/webhooks/google-form?workflowId=${workflowId}`;
 
   const copyToClipboard = async () => {

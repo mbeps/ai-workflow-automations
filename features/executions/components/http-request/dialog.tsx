@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
+import type z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,7 +31,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { httpRequestSchema as formSchema, HttpRequestFormValues } from "@/schemas/executions/http-request-schema";
+import {
+  httpRequestSchema as formSchema,
+  type HttpRequestFormValues,
+} from "@/schemas/executions/http-request-schema";
 
 interface Props {
   open: boolean;

@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { ROUTES } from "@/routes";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,6 +24,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useSuspenseExecution } from "@/features/executions/hooks/use-executions";
+import { ROUTES } from "@/routes";
 
 const getStatusIcon = (status: ExecutionStatus) => {
   switch (status) {

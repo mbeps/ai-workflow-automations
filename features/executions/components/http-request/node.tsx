@@ -4,11 +4,11 @@ import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { GlobeIcon } from "lucide-react";
 import { memo, useState } from "react";
 import { HTTP_REQUEST_CHANNEL_NAME } from "@/inngest/channels/http-request";
+import type { HttpRequestFormValues } from "@/schemas/executions/http-request-schema";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchHttpRequestRealtimeToken } from "./actions";
 import { HttpRequestDialog } from "./dialog";
-import { type HttpRequestFormValues } from "@/schemas/executions/http-request-schema";
 
 type HttpRequestNodeData = {
   variableName?: string;

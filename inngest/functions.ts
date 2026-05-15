@@ -2,6 +2,7 @@ import { ExecutionStatus, type NodeType } from "@prisma/client";
 import { NonRetriableError } from "inngest";
 import { getExecutor } from "@/features/executions/lib/executor-registry";
 import prisma from "@/lib/db";
+import { env } from "@/lib/env";
 import { anthropicChannel } from "./channels/anthropic";
 import { discordChannel } from "./channels/discord";
 import { geminiChannel } from "./channels/gemini";
@@ -17,7 +18,7 @@ import { topologicalSort } from "./utils";
 export const executeWorkflow = inngest.createFunction(
   {
     id: "execute-workflow",
-    retries: process.env.NODE_ENV === "production" ? 3 : 0,
+    retries: env.NODE_ENV === "production" ? 3 : 0,
     onFailure: async ({ event, step }) => {
       return prisma.execution.update({
         where: { inngestEventId: event.data.event.id },

@@ -3,8 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import z from "zod";
-import { slackSchema as formSchema, SlackFormValues } from "@/schemas/executions/slack-schema";
+import type z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,6 +24,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  slackSchema as formSchema,
+  type SlackFormValues,
+} from "@/schemas/executions/slack-schema";
 
 interface Props {
   open: boolean;

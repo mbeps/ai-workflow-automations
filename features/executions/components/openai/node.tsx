@@ -5,11 +5,11 @@ import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
 import { getModelProviderLogo } from "@/features/credentials/models";
 import { OPENAI_CHANNEL_NAME } from "@/inngest/channels/openai";
+import type { OpenAiFormValues } from "@/schemas/executions/ai-model-schemas";
 import { useNodeStatus } from "../../hooks/use-node-status";
 import { BaseExecutionNode } from "../base-execution-node";
 import { fetchOpenAiRealtimeToken } from "./actions";
 import { OpenAiDialog } from "./dialog";
-import { type OpenAiFormValues } from "@/schemas/executions/ai-model-schemas";
 
 type OpenAiNodeData = {
   variableName?: string;

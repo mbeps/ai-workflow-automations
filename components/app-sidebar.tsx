@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
 import { authClient } from "@/lib/auth-client";
+import { env } from "@/lib/env";
 import { ROUTES } from "@/routes";
 
 const menuItems = [
@@ -109,7 +110,7 @@ export const AppSidebar = () => {
                 className="gap-x-4 h-10 px-4"
                 onClick={() =>
                   authClient.checkout({
-                    slug: process.env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
+                    slug: env.NEXT_PUBLIC_POLAR_PRODUCT_SLUG as string,
                   })
                 }
               >
