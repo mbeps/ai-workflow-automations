@@ -119,16 +119,18 @@ export const AppSidebar = () => {
               </SidebarMenuButton>
             </SidebarMenuItem>
           )}
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              tooltip="Billing Portal"
-              className="gap-x-4 h-10 px-4"
-              onClick={() => authClient.customer.portal()}
-            >
-              <CreditCardIcon className="h-4 w-4" />
-              <span>Billing Portal</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {env.NEXT_PUBLIC_ENABLE_POLAR === "true" && (
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                tooltip="Billing Portal"
+                className="gap-x-4 h-10 px-4"
+                onClick={() => authClient.customer.portal()}
+              >
+                <CreditCardIcon className="h-4 w-4" />
+                <span>Billing Portal</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )}
           <SidebarMenuItem>
             <SidebarMenuButton
               tooltip="Sign out"
