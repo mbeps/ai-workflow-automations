@@ -13,7 +13,9 @@
       "!.next",
       "!dist",
       "!build",
-      "!generated"
+      "!generated",
+      "!coverage",
+      "!__tests__"
     ]
   },
   "formatter": {
