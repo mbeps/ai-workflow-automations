@@ -5,12 +5,6 @@ import ky from "ky";
 import { slackChannel } from "@/inngest/channels/slack";
 import type { NodeExecutor } from "@/types/node-executor";
 
-Handlebars.registerHelper("json", (context) => {
-  const jsonString = JSON.stringify(context, null, 2);
-  const safeString = new Handlebars.SafeString(jsonString);
-
-  return safeString;
-});
 
 type SlackData = {
   variableName?: string;

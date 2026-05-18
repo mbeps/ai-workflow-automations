@@ -4,12 +4,6 @@ import ky, { type Options as KyOptions } from "ky";
 import { httpRequestChannel } from "@/inngest/channels/http-request";
 import type { NodeExecutor } from "@/types/node-executor";
 
-Handlebars.registerHelper("json", (context) => {
-  const jsonString = JSON.stringify(context, null, 2);
-  const safeString = new Handlebars.SafeString(jsonString);
-
-  return safeString;
-});
 
 type HttpRequestData = {
   variableName?: string;
