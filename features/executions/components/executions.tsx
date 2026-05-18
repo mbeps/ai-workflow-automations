@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * Execution list page components.
+ * Provides header, list, pagination, and empty state views for browsing workflow executions.
+ * Uses entity component patterns for consistent layout and behavior.
+ *
+ * @author Maruf Bepary
+ */
+
 import type { Execution } from "@prisma/client";
 import { ExecutionStatus } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
@@ -23,6 +31,12 @@ import { ROUTES } from "@/routes";
 import { useSuspenseExecutions } from "../hooks/use-executions";
 import { useExecutionsParams } from "../hooks/use-executions-params";
 
+/**
+ * Renders paginated list of execution items with fallback for empty state.
+ * Fetches all executions via suspense query.
+ *
+ * @returns Execution list component
+ */
 export const ExecutionsList = () => {
   const executions = useSuspenseExecutions();
 
@@ -36,6 +50,11 @@ export const ExecutionsList = () => {
   );
 };
 
+/**
+ * Renders the page header with title and description.
+ *
+ * @returns Header component
+ */
 export const ExecutionsHeader = () => {
   return (
     <EntityHeader
@@ -45,6 +64,12 @@ export const ExecutionsHeader = () => {
   );
 };
 
+/**
+ * Renders pagination controls bound to URL parameters.
+ * Syncs page changes back to query string for bookmarkable state.
+ *
+ * @returns Pagination component
+ */
 export const ExecutionsPagination = () => {
   const executions = useSuspenseExecutions();
   const [params, setParams] = useExecutionsParams();
@@ -59,6 +84,13 @@ export const ExecutionsPagination = () => {
   );
 };
 
+/**
+ * Wrapper component combining header and pagination with list content.
+ * Provides consistent container layout for the executions list page.
+ *
+ * @param children - Content to render between header and pagination
+ * @returns Container component
+ */
 export const ExecutionsContainer = ({
   children,
 }: {
@@ -74,20 +106,41 @@ export const ExecutionsContainer = ({
   );
 };
 
+/**
+ * Loading state component shown while executions are being fetched.
+ *
+ * @returns Loading view component
+ */
 export const ExecutionsLoading = () => {
   return <LoadingView message="Loading executions..." />;
 };
 
+/**
+ * Error state component shown when execution fetch fails.
+ *
+ * @returns Error view component
+ */
 export const ExecutionsError = () => {
   return <ErrorView message="Error loading executions" />;
 };
 
+/**
+ * Empty state component shown when user has no executions.
+ *
+ * @returns Empty view component
+ */
 export const ExecutionsEmpty = () => {
   return (
     <EmptyView message="You haven't created any executions yet. Get started by running your first workflow" />
   );
 };
 
+/**
+ * Returns a Lucide icon component matching the execution status.
+ *
+ * @param status - Execution status value
+ * @returns Icon component with appropriate color and animation
+ */
 const getStatusIcon = (status: ExecutionStatus) => {
   switch (status) {
     case ExecutionStatus.SUCCESS:

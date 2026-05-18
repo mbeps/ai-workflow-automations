@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/**
+ * Common schema for AI model node configurations.
+ * Validates prompt inputs, system instructions, and credential selection for AI nodes.
+ * @author Maruf Bepary
+ */
 export const aiModelSchema = z.object({
   variableName: z
     .string()

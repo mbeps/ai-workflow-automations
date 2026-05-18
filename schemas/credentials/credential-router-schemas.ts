@@ -2,6 +2,12 @@ import { CredentialType } from "@prisma/client";
 import { z } from "zod";
 import { PAGINATION } from "@/config/constants";
 
+/**
+ * Schemas for credential-related tRPC procedures.
+ * Handles validation for fetching, creating, updating, and deleting credentials.
+ * @author Maruf Bepary
+ */
+
 export const credentialIdSchema = z.object({ id: z.string() });
 
 export const credentialUpsertSchema = z.object({

@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/**
+ * Schema for HTTP request node configuration validation.
+ * Validates endpoint URLs, HTTP methods, and request bodies for API integration nodes.
+ * @author Maruf Bepary
+ */
 export const httpRequestSchema = z.object({
   variableName: z
     .string()

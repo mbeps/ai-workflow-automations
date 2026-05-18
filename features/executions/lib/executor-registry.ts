@@ -1,3 +1,11 @@
+/**
+ * Registry mapping node types to their executor implementations.
+ * Provides centralized lookup for node executors during workflow execution.
+ * Supports all trigger, AI, and messaging node types.
+ *
+ * @author Maruf Bepary
+ */
+
 import { NodeType } from "@prisma/client";
 import { googleFormTriggerExecutor } from "@/features/triggers/components/google-form-trigger/executor";
 import { manualTriggerExecutor } from "@/features/triggers/components/manual-trigger/executor";
@@ -11,6 +19,10 @@ import { openAiExecutor } from "../components/openai/executor";
 import { openRouterExecutor } from "../components/openrouter/executor";
 import { slackExecutor } from "../components/slack/executor";
 
+/**
+ * Complete mapping of all node types to their executor functions.
+ * Each executor handles node-specific logic for the given node type.
+ */
 export const executorRegistry: Record<NodeType, NodeExecutor> = {
   [NodeType.INITIAL]: manualTriggerExecutor,
   [NodeType.MANUAL_TRIGGER]: manualTriggerExecutor,
@@ -25,6 +37,13 @@ export const executorRegistry: Record<NodeType, NodeExecutor> = {
   [NodeType.SLACK]: slackExecutor,
 };
 
+/**
+ * Retrieves executor function for a given node type.
+ * Throws error if no executor exists for the provided type.
+ *
+ * @param type - NodeType enum value
+ * @returns Executor function for the node type
+ */
 export const getExecutor = (type: NodeType): NodeExecutor => {
   const executor = executorRegistry[type];
   if (!executor) {

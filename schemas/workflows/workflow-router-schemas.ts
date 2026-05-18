@@ -1,6 +1,12 @@
 import { z } from "zod";
 import { PAGINATION } from "@/config/constants";
 
+/**
+ * Schemas for workflow-related tRPC procedures.
+ * Validates inputs for creating, updating (nodes/edges), renaming, and fetching workflows.
+ * @author Maruf Bepary
+ */
+
 export const workflowIdSchema = z.object({ id: z.string() });
 
 export const workflowUpdateSchema = z.object({

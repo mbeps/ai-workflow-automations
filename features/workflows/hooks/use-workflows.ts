@@ -8,7 +8,12 @@ import { useTRPC } from "@/trpc/client";
 import { useWorkflowsParams } from "./use-workflows-params";
 
 /**
- * Hook to fetch all workflows using suspense
+ * Fetches all workflows with suspense for list page.
+ * Respects current URL query params (page, pageSize, search).
+ * Throws promise if data is loading; suitable for React.lazy and Suspense.
+ *
+ * @author Maruf Bepary
+ * @returns TanStack Query suspense query result with paginated workflows
  */
 export const useSuspenseWorkflows = () => {
   const trpc = useTRPC();
@@ -18,7 +23,12 @@ export const useSuspenseWorkflows = () => {
 };
 
 /**
- * Hook to create a new workflow
+ * Creates a new workflow with random slug name and INITIAL anchor node.
+ * Gated by premiumProcedure; requires active subscription.
+ * Invalidates workflows list on success and shows toast notification.
+ *
+ * @author Maruf Bepary
+ * @returns TanStack Query mutation for creating a workflow
  */
 export const useCreateWorkflow = () => {
   const queryClient = useQueryClient();
@@ -38,7 +48,12 @@ export const useCreateWorkflow = () => {
 };
 
 /**
- * Hook to remove a workflow
+ * Deletes a workflow and its associated nodes/connections via cascade.
+ * Invalidates workflows list and single workflow query on success.
+ * Shows success toast notification.
+ *
+ * @author Maruf Bepary
+ * @returns TanStack Query mutation for removing a workflow
  */
 export const useRemoveWorkflow = () => {
   const trpc = useTRPC();
@@ -58,7 +73,12 @@ export const useRemoveWorkflow = () => {
 };
 
 /**
- * Hook to fetch a single workflow using suspense
+ * Fetches a single workflow with full nodes and connections for editor.
+ * Uses suspense pattern; throws promise if loading.
+ *
+ * @author Maruf Bepary
+ * @param id - Workflow ID
+ * @returns TanStack Query suspense query result with workflow data
  */
 export const useSuspenseWorkflow = (id: string) => {
   const trpc = useTRPC();
@@ -66,7 +86,12 @@ export const useSuspenseWorkflow = (id: string) => {
 };
 
 /**
- * Hook to update a workflow name
+ * Updates workflow name via tRPC mutation.
+ * Invalidates workflows list and single workflow query on success.
+ * Shows success/error toast notifications.
+ *
+ * @author Maruf Bepary
+ * @returns TanStack Query mutation for updating workflow name
  */
 export const useUpdateWorkflowName = () => {
   const queryClient = useQueryClient();
@@ -89,7 +114,12 @@ export const useUpdateWorkflowName = () => {
 };
 
 /**
- * Hook to update a workflow
+ * Updates entire workflow (nodes and connections) in a transaction.
+ * Persists React Flow canvas state to database with proper cascade handling.
+ * Invalidates workflows list and single workflow query on success.
+ *
+ * @author Maruf Bepary
+ * @returns TanStack Query mutation for updating workflow structure
  */
 export const useUpdateWorkflow = () => {
   const queryClient = useQueryClient();

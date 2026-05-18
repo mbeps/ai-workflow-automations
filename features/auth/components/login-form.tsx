@@ -28,6 +28,12 @@ import { authClient } from "@/lib/auth-client";
 import { ROUTES } from "@/routes";
 import { type LoginFormValues, loginSchema } from "@/schemas/auth/login-schema";
 
+/**
+ * Login form component.
+ * Allows users to authenticate using email/password or social providers.
+ * 
+ * @author Maruf Bepary
+ */
 export function LoginForm() {
   const router = useRouter();
 

@@ -18,6 +18,20 @@ import {
   protectedProcedure,
 } from "@/trpc/init";
 
+/**
+ * tRPC workflow router with CRUD and execution procedures.
+ * All procedures are user-scoped; users can only access/modify their own workflows.
+ * Procedures:
+ * - execute: trigger workflow run via Inngest
+ * - create: create new workflow (premium only)
+ * - remove: delete workflow and cascade delete nodes/connections
+ * - update: persist React Flow nodes and edges in transaction
+ * - updateName: rename workflow
+ * - getOne: fetch single workflow with nodes and edges for editor
+ * - getMany: list workflows with pagination and search
+ *
+ * @author Maruf Bepary
+ */
 export const workflowsRouter = createTRPCRouter({
   execute: protectedProcedure
     .input(workflowIdSchema)

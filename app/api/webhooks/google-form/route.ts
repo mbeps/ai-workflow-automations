@@ -1,6 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { sendWorkflowExecution } from "@/inngest/utils";
 
+/**
+ * Google Form webhook handler.
+ * Receives form submission data from the Google Apps Script bridge and triggers 
+ * the associated workflow execution via Inngest.
+ *
+ * @author Maruf Bepary
+ * @param request - The incoming webhook request containing form data.
+ * @returns A JSON response indicating the success or failure of the triggering operation.
+ */
 export async function POST(request: NextRequest) {
   try {
     const url = new URL(request.url);

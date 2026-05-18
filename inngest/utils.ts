@@ -3,6 +3,15 @@ import type { Connection, Node } from "@prisma/client";
 import toposort from "toposort";
 import { inngest } from "./client";
 
+/**
+ * Topologically sorts nodes based on their connections to determine execution order.
+ * Throws an error if a cycle is detected.
+ * 
+ * @param nodes List of nodes in the workflow.
+ * @param connections List of directed connections between nodes.
+ * @returns An array of nodes in topological order.
+ * @author Maruf Bepary
+ */
 export const topologicalSort = (
   nodes: Node[],
   connections: Connection[],
@@ -49,6 +58,12 @@ export const topologicalSort = (
   return sortedNodeIds.map((id) => nodeMap.get(id)!).filter(Boolean);
 };
 
+/**
+ * Sends a workflow execution event to Inngest.
+ * 
+ * @param data Data containing workflowId and initial context.
+ * @author Maruf Bepary
+ */
 export const sendWorkflowExecution = async (data: {
   workflowId: string;
   [key: string]: any;

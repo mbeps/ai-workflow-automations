@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * Single execution detail view component.
+ * Displays execution status, timing, workflow link, and collapsible output/error details.
+ * Uses suspense to load execution data by ID.
+ *
+ * @author Maruf Bepary
+ */
+
 import { ExecutionStatus } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 import {
@@ -26,6 +34,12 @@ import {
 import { useSuspenseExecution } from "@/features/executions/hooks/use-executions";
 import { ROUTES } from "@/routes";
 
+/**
+ * Returns a Lucide icon component matching the execution status.
+ *
+ * @param status - Execution status value
+ * @returns Icon component with appropriate color
+ */
 const getStatusIcon = (status: ExecutionStatus) => {
   switch (status) {
     case ExecutionStatus.SUCCESS:
@@ -39,10 +53,23 @@ const getStatusIcon = (status: ExecutionStatus) => {
   }
 };
 
+/**
+ * Formats execution status enum to titlecase display string.
+ *
+ * @param status - Execution status value
+ * @returns Formatted status string
+ */
 const formatStatus = (status: ExecutionStatus) => {
   return status.charAt(0) + status.slice(1).toLowerCase();
 };
 
+/**
+ * Displays detailed execution information including status, timing, workflow link, and output/error logs.
+ * Fetches execution data via suspense query and renders collapsible sections for debugging.
+ *
+ * @param executionId - Unique execution identifier
+ * @returns Execution detail card component
+ */
 export const ExecutionView = ({ executionId }: { executionId: string }) => {
   const { data: execution } = useSuspenseExecution(executionId);
   const [showStackTrace, setShowStackTrace] = useState(false);

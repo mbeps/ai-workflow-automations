@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/**
+ * Schema for user registration validation.
+ * Validates email, password, and confirmation for sign-up forms.
+ * @author Maruf Bepary
+ */
 export const registerSchema = z
   .object({
     email: z.string().email("Please enter a valid email address"),

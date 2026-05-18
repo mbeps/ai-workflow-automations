@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/**
+ * Schema for Discord node configuration validation.
+ * Validates webhook URLs and message content for Discord notification nodes.
+ * @author Maruf Bepary
+ */
 export const discordSchema = z.object({
   variableName: z
     .string()

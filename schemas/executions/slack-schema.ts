@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/**
+ * Schema for Slack node configuration validation.
+ * Validates webhook URLs and message content for Slack notification nodes.
+ * @author Maruf Bepary
+ */
 export const slackSchema = z.object({
   variableName: z
     .string()

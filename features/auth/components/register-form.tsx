@@ -31,6 +31,12 @@ import {
   registerSchema,
 } from "@/schemas/auth/register-schema";
 
+/**
+ * Registration form component.
+ * Allows users to sign up using email/password or social providers.
+ * 
+ * @author Maruf Bepary
+ */
 export function RegisterForm() {
   const router = useRouter();
 
