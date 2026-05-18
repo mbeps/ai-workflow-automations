@@ -2,6 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { authClient } from "@/lib/auth-client";
 import { env } from "@/lib/env";
 
+/**
+ * Hook for fetching the Polar.sh subscription status.
+ * 
+ * @author Maruf Bepary
+ */
 export const useSubscription = () => {
   return useQuery({
     queryKey: ["subscription"],
@@ -16,6 +21,12 @@ export const useSubscription = () => {
   });
 };
 
+/**
+ * Hook for checking if the user has an active Polar.sh subscription.
+ * Returns active status and the first active subscription details.
+ * 
+ * @author Maruf Bepary
+ */
 export const useHasActiveSubscription = () => {
   const { data: customerState, isLoading, ...rest } = useSubscription();
 

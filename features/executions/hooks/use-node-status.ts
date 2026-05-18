@@ -1,8 +1,24 @@
+/**
+ * Custom hook for real-time node execution status updates via Inngest.
+ * Subscribes to Inngest Realtime channels and filters messages by nodeId.
+ * Maintains a local state updated with latest status for each node.
+ *
+ * @author Maruf Bepary
+ */
+
 import type { Realtime } from "@inngest/realtime";
 import { useInngestSubscription } from "@inngest/realtime/hooks";
 import { useEffect, useState } from "react";
 import type { NodeStatus } from "@/components/react-flow/node-status-indicator";
 
+/**
+ * Configuration options for useNodeStatus hook.
+ *
+ * @property nodeId - Target node identifier to track
+ * @property channel - Inngest Realtime channel name
+ * @property topic - Inngest Realtime topic within channel
+ * @property refreshToken - Function that returns valid subscription token
+ */
 interface UseNodeStatusOptions {
   nodeId: string;
   channel: string;
@@ -10,6 +26,14 @@ interface UseNodeStatusOptions {
   refreshToken: () => Promise<Realtime.Subscribe.Token>;
 }
 
+/**
+ * Subscribes to real-time status updates for a specific execution node.
+ * Filters Inngest messages by channel, topic, and nodeId, maintaining latest status.
+ * Automatically re-subscribes when token expires via refreshToken callback.
+ *
+ * @param options - UseNodeStatusOptions configuration
+ * @returns Current status state ('initial', 'running', 'success', 'failed')
+ */
 export function useNodeStatus({
   nodeId,
   channel,

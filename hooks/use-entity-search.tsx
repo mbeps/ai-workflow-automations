@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { PAGINATION } from "@/config/constants";
 
+/**
+ * Hook for managing debounced search state for paginated entity lists.
+ * It synchronizes a local search input with URL/state parameters and
+ * resets the page to the default when the search query changes.
+ *
+ * @param params - The current search and pagination parameters.
+ * @param setParams - Callback to update the search and pagination parameters.
+ * @param debounceMs - Delay in milliseconds before triggering the search update.
+ * @returns An object containing the current local search value and a change handler.
+ * @author Maruf Bepary
+ */
 interface UseEntitySearchProps<
   T extends {
     search: string;

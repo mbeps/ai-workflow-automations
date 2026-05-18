@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * Button component for adding nodes to the workflow canvas.
+ * Opens a NodeSelector modal to allow users to choose and add
+ * different node types (triggers, AI models, HTTP, messaging) to the editor.
+ * 
+ * @author Maruf Bepary
+ */
+
 import { PlusIcon } from "lucide-react";
 import { memo, useState } from "react";
 import { NodeSelector } from "@/components/node-selector";

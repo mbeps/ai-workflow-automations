@@ -2,6 +2,13 @@ import { channel, topic } from "@inngest/realtime";
 
 export const GEMINI_CHANNEL_NAME = "gemini-execution";
 
+/**
+ * Inngest Realtime channel for Gemini node execution status.
+ * Used for streaming real-time execution status updates to the UI,
+ * allowing for animated borders and state indicators on the canvas.
+ *
+ * @author Maruf Bepary
+ */
 export const geminiChannel = channel(GEMINI_CHANNEL_NAME).addTopic(
   topic("status").type<{
     nodeId: string;

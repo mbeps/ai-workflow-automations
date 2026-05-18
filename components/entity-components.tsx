@@ -39,6 +39,19 @@ type EntityHeaderProps = {
   | { onNew?: never; newButtonHref?: never }
 );
 
+/**
+ * A reusable header for entity list pages, showing a title, description, and an optional "New" action button.
+ * 
+ * @author Maruf Bepary
+ * @param title The main heading text for the header.
+ * @param description Optional subtext providing details about the entity.
+ * @param onNew Callback function triggered when the "New" button is clicked (if no href).
+ * @param newButtonHref The URL to navigate to when the "New" button is clicked (if no callback).
+ * @param newButtonLabel The text for the creation button.
+ * @param disabled Whether the header actions are disabled.
+ * @param isCreating Whether a creation operation is currently in progress.
+ * @returns The rendered header component.
+ */
 export const EntityHeader = ({
   title,
   description,
@@ -83,6 +96,16 @@ type EntityContainerProps = {
   pagination?: React.ReactNode;
 };
 
+/**
+ * A layout wrapper for entity-related content, providing consistent padding, alignment, and optional slots for headers, search, and pagination.
+ * 
+ * @author Maruf Bepary
+ * @param children The main content of the container.
+ * @param header Optional header component to display at the top.
+ * @param search Optional search bar component.
+ * @param pagination Optional pagination component to display at the bottom.
+ * @returns The rendered container component.
+ */
 export const EntityContainer = ({
   children,
   header,
@@ -109,6 +132,15 @@ interface EntitySearchProps {
   placeholder?: string;
 }
 
+/**
+ * A search input component specifically styled for entity list pages with a search icon and bounded width.
+ * 
+ * @author Maruf Bepary
+ * @param value The current search query string.
+ * @param onChange Callback triggered when the search input value changes.
+ * @param placeholder Optional placeholder text (defaults to "Search").
+ * @returns The rendered search component.
+ */
 export const EntitySearch = ({
   value,
   onChange,
@@ -134,6 +166,16 @@ interface EntityPaginationProps {
   disabled?: boolean;
 }
 
+/**
+ * Pagination controls for navigating through paginated entity lists.
+ * 
+ * @author Maruf Bepary
+ * @param page The current active page number.
+ * @param totalPages The total number of available pages.
+ * @param onPageChange Callback triggered when the page is changed.
+ * @param disabled Whether pagination controls are disabled.
+ * @returns The rendered pagination component.
+ */
 export const EntityPagination = ({
   page,
   totalPages,
@@ -171,6 +213,13 @@ interface StateViewProps {
   message?: string;
 }
 
+/**
+ * A centered loading state display with a spinner and optional message.
+ * 
+ * @author Maruf Bepary
+ * @param message Optional message text to display below the spinner.
+ * @returns The rendered loading view.
+ */
 export const LoadingView = ({ message }: StateViewProps) => {
   return (
     <div className="flex justify-center items-center h-full flex-1 flex-col gap-y-4">
@@ -180,6 +229,13 @@ export const LoadingView = ({ message }: StateViewProps) => {
   );
 };
 
+/**
+ * A centered error state display with an alert icon and optional message.
+ * 
+ * @author Maruf Bepary
+ * @param message Optional error message text to display.
+ * @returns The rendered error view.
+ */
 export const ErrorView = ({ message }: StateViewProps) => {
   return (
     <div className="flex justify-center items-center h-full flex-1 flex-col gap-y-4">
@@ -193,6 +249,14 @@ interface EmptyViewProps extends StateViewProps {
   onNew?: () => void;
 }
 
+/**
+ * A placeholder view shown when there are no entities to display, featuring an icon and optional call-to-action.
+ * 
+ * @author Maruf Bepary
+ * @param message Optional description of the empty state.
+ * @param onNew Optional callback for the action button to add a new item.
+ * @returns The rendered empty view component.
+ */
 export const EmptyView = ({ message, onNew }: EmptyViewProps) => {
   return (
     <Empty className="border border-dashed bg-white">
@@ -220,6 +284,17 @@ interface EntityListProps<T> {
   className?: string;
 }
 
+/**
+ * A flexible list component that handles empty states and maps over entity items with a custom renderer.
+ * 
+ * @author Maruf Bepary
+ * @param items The array of data items to render.
+ * @param renderItem Function that returns the React node for each item.
+ * @param getKey Optional function to provide a custom key for each item.
+ * @param emptyView The component to show when the items list is empty.
+ * @param className Additional CSS classes for the container.
+ * @returns The rendered list component.
+ */
 export function EntityList<T>({
   items,
   renderItem,
@@ -257,6 +332,20 @@ interface EntityItemProps {
   className?: string;
 }
 
+/**
+ * A standard card-styled item for entity lists, supporting images, metadata, navigation, and a removal action.
+ * 
+ * @author Maruf Bepary
+ * @param href The destination URL linked to the item card.
+ * @param title The primary title of the item.
+ * @param subtitle Optional secondary text or information.
+ * @param image Optional icon or image to display next to the title.
+ * @param actions Optional additional action buttons.
+ * @param onRemove Optional callback for deleting the item.
+ * @param isRemoving Whether the removal operation is currently in progress.
+ * @param className Additional CSS classes for the card.
+ * @returns The rendered item component.
+ */
 export const EntityItem = ({
   href,
   title,

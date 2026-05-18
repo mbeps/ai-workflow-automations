@@ -1,3 +1,11 @@
+/**
+ * Configures TanStack Query client with sensible defaults for SSR hydration.
+ * 30-second stale time; pending queries included in server-side dehydration.
+ * Superjson serialization for transport and deserialization on client.
+ * 
+ * @author Maruf Bepary
+ */
+
 import {
   defaultShouldDehydrateQuery,
   QueryClient,

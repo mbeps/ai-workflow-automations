@@ -1,6 +1,12 @@
 import { z } from "zod";
 import { PAGINATION } from "@/config/constants";
 
+/**
+ * Schemas for workflow execution tRPC procedures.
+ * Handles validation for fetching execution history and individual execution details.
+ * @author Maruf Bepary
+ */
+
 export const executionIdSchema = z.object({ id: z.string() });
 
 export const executionGetManySchema = z.object({

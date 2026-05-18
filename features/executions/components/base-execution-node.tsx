@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * Reusable React Flow node component for execution visualization.
+ * Provides a base component with status indicators, handles, and common node actions.
+ * Used by all execution node type components (Discord, Slack, HTTP, etc.).
+ *
+ * @author Maruf Bepary
+ */
+
 import { type NodeProps, Position, useReactFlow } from "@xyflow/react";
 import type { LucideIcon } from "lucide-react";
 import Image from "next/image";
@@ -12,6 +20,17 @@ import {
 } from "@/components/react-flow/node-status-indicator";
 import { WorkflowNode } from "@/components/workflow-node";
 
+/**
+ * Props for BaseExecutionNode component.
+ *
+ * @property icon - Lucide icon component or image path string
+ * @property name - Display name of the node
+ * @property description - Optional node description text
+ * @property children - Optional child content rendered inside node
+ * @property status - Current execution status (initial, running, success, failed)
+ * @property onSettings - Callback when settings button is clicked
+ * @property onDoubleClick - Callback when node is double-clicked
+ */
 interface BaseExecutionNodeProps extends NodeProps {
   icon: LucideIcon | string;
   name: string;
@@ -22,6 +41,14 @@ interface BaseExecutionNodeProps extends NodeProps {
   onDoubleClick?: () => void;
 }
 
+/**
+ * Renders a memoized execution node with status indicator and connection handles.
+ * Handles node deletion and provides framework for customization via children.
+ * Integrates React Flow lifecycle and visual feedback for workflow execution.
+ *
+ * @param props - BaseExecutionNodeProps
+ * @returns Memoized React component
+ */
 export const BaseExecutionNode = memo(
   ({
     id,

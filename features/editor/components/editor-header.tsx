@@ -1,5 +1,14 @@
 "use client";
 
+/**
+ * Editor header component providing workflow navigation, naming, and save functionality.
+ * Displays breadcrumbs, editable workflow name, and save button.
+ * EditorSaveButton: Persists node and edge changes from React Flow canvas to database.
+ * EditorNameInput: Inline name editor with keyboard shortcuts (Enter/Escape).
+ * 
+ * @author Maruf Bepary
+ */
+
 import { useAtomValue } from "jotai";
 import { SaveIcon } from "lucide-react";
 import Link from "next/link";

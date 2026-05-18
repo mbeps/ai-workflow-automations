@@ -15,6 +15,13 @@ import { stripeTriggerChannel } from "./channels/stripe-trigger";
 import { inngest } from "./client";
 import { topologicalSort } from "./utils";
 
+/**
+ * The core workflow execution engine.
+ * Topologically sorts nodes and runs each executor sequentially
+ * within a durable Inngest function.
+ * 
+ * @author Maruf Bepary
+ */
 export const executeWorkflow = inngest.createFunction(
   {
     id: "execute-workflow",

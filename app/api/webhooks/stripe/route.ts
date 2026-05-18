@@ -1,6 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { sendWorkflowExecution } from "@/inngest/utils";
 
+/**
+ * Stripe webhook handler.
+ * Receives external Stripe events and triggers the associated workflow execution
+ * via Inngest, mapping event metadata to the workflow context.
+ *
+ * @author Maruf Bepary
+ * @param request - The incoming webhook request from Stripe.
+ * @returns A JSON response indicating the success or failure of the triggering operation.
+ */
 export async function POST(request: NextRequest) {
   try {
     const url = new URL(request.url);

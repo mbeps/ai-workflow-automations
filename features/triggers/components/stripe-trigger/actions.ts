@@ -9,6 +9,11 @@ export type StripeTriggerToken = Realtime.Token<
   ["status"]
 >;
 
+/**
+ * Fetches the Inngest Realtime subscription token for monitoring Stripe trigger node status.
+ * 
+ * @author Maruf Bepary
+ */
 export async function fetchStripeTriggerRealtimeToken(): Promise<StripeTriggerToken> {
   const token = await getSubscriptionToken(inngest, {
     channel: stripeTriggerChannel(),

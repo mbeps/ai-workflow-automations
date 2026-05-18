@@ -16,6 +16,16 @@ import {
   protectedProcedure,
 } from "@/trpc/init";
 
+/**
+ * tRPC router for credential management.
+ * Provides procedures for creating, reading, updating, and deleting AI provider
+ * credentials (OpenAI, Anthropic, Gemini, OpenRouter) with AES-256-GCM encryption
+ * for API keys at rest. Credential encryption/decryption uses PBKDF2-SHA512 key
+ * derivation with per-call salt and IV. Premium tier required for creation;
+ * all queries scoped to authenticated user.
+ * 
+ * @author Maruf Bepary
+ */
 export const credentialsRouter = createTRPCRouter({
   create: premiumProcedure
     .input(credentialUpsertSchema)

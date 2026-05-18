@@ -5,6 +5,15 @@ import prisma from "@/lib/db";
 import { env } from "@/lib/env";
 import { polarClient } from "./polar";
 
+/**
+ * Better Auth configuration instance.
+ * Core authentication engine for Nodebase, handling email/password,
+ * social providers (GitHub, Google), and Polar subscription integration.
+ * Sessions are persisted in PostgreSQL via Prisma.
+ *
+ * @author Maruf Bepary
+ * @see {@link https://www.better-auth.com/docs|Better Auth Docs}
+ */
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",

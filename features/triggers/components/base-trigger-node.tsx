@@ -22,6 +22,12 @@ interface BaseTriggerNodeProps extends NodeProps {
   onDoubleClick?: () => void;
 }
 
+/**
+ * Reusable base component for all trigger nodes on the React Flow canvas.
+ * Handles common UI elements like icons, status indicators, and handles.
+ * 
+ * @author Maruf Bepary
+ */
 export const BaseTriggerNode = memo(
   ({
     id,

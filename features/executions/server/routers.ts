@@ -1,3 +1,11 @@
+/**
+ * tRPC router for workflow execution management.
+ * Provides protected procedures for retrieving execution history and details.
+ * All queries scoped to authenticated user's workflows.
+ *
+ * @author Maruf Bepary
+ */
+
 import z from "zod";
 import { PAGINATION } from "@/config/constants";
 import prisma from "@/lib/db";
@@ -8,6 +16,13 @@ import {
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 
 export const executionsRouter = createTRPCRouter({
+  /**
+   * Retrieves a single execution by ID with workflow metadata.
+   * Protected: requires valid session and ownership of workflow.
+   *
+   * @input executionIdSchema - Execution ID
+   * @returns Execution record with workflow name and ID
+   */
   getOne: protectedProcedure
     .input(executionIdSchema)
     .query(({ ctx, input }) => {
@@ -28,6 +43,14 @@ export const executionsRouter = createTRPCRouter({
         },
       });
     }),
+  /**
+   * Retrieves paginated execution list ordered by most recent first.
+   * Protected: scoped to authenticated user's workflows.
+   * Includes pagination metadata for UI implementation.
+   *
+   * @input executionGetManySchema - Page and pageSize parameters
+   * @returns Paginated execution list with workflow metadata
+   */
   getMany: protectedProcedure
     .input(executionGetManySchema)
     .query(async ({ ctx, input }) => {

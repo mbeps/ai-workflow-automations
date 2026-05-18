@@ -7,6 +7,13 @@ import { NodeSelector } from "./node-selector";
 import { PlaceholderNode } from "./react-flow/placeholder-node";
 import { WorkflowNode } from "./workflow-node";
 
+/**
+ * A special terminal node for the workflow canvas that serves as the entry point for adding the first trigger node.
+ * 
+ * @author Maruf Bepary
+ * @param props Inherits React Flow NodeProps.
+ * @returns The rendered initial node component.
+ */
 export const InitialNode = memo((props: NodeProps) => {
   const [selectorOpen, setSelectorOpen] = useState(false);
 

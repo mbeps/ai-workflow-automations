@@ -1,5 +1,14 @@
 "use client";
 
+/**
+ * Main React Flow canvas component for visual workflow editing.
+ * Manages nodes, edges, and real-time canvas state with drag-and-drop, snap-to-grid,
+ * and topological validation. Renders the INITIAL anchor node plus user-added nodes.
+ * Conditionally shows ExecuteWorkflowButton when a manual trigger is present.
+ * 
+ * @author Maruf Bepary
+ */
+
 import {
   addEdge,
   applyEdgeChanges,

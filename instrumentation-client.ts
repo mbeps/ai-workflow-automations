@@ -1,7 +1,10 @@
-// This file configures the initialization of Sentry on the client.
-// The added config here will be used whenever a users loads a page in their browser.
-// https://docs.sentry.io/platforms/javascript/guides/nextjs/
-
+/**
+ * Client-side instrumentation configuration for Sentry.
+ * This file is executed in the browser environment to initialize observability,
+ * tracking client-side errors, performance metrics, and session replays.
+ *
+ * @author Maruf Bepary
+ */
 import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
@@ -27,4 +30,7 @@ Sentry.init({
   debug: false,
 });
 
+/**
+ * Handler for capturing router transition start events in Sentry.
+ */
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

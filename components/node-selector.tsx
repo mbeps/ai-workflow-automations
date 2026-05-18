@@ -98,6 +98,15 @@ interface NodeSelectorProps {
   children: React.ReactNode;
 }
 
+/**
+ * A side panel (sheet) that allows users to select and add various trigger and execution nodes to the workflow canvas.
+ * 
+ * @author Maruf Bepary
+ * @param open Whether the selector panel is visible.
+ * @param onOpenChange Callback triggered when the panel visibility changes.
+ * @param children The trigger element (usually a button or placeholder) that opens the selector.
+ * @returns The rendered node selector component.
+ */
 export function NodeSelector({
   open,
   onOpenChange,

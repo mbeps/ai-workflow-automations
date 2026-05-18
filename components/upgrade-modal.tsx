@@ -18,6 +18,14 @@ interface UpgradeModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+/**
+ * A dialog prompting users to subscribe to a Pro plan when they attempt to use premium features.
+ * 
+ * @author Maruf Bepary
+ * @param open Whether the modal is visible.
+ * @param onOpenChange Callback triggered when the modal visibility changes.
+ * @returns The rendered upgrade modal component.
+ */
 export const UpgradeModal = ({ open, onOpenChange }: UpgradeModalProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
