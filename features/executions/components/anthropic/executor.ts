@@ -100,9 +100,9 @@ export const anthropicExecutor: NodeExecutor<AnthropicData> = async ({
       generateText,
       {
         model: anthropic("claude-sonnet-4-5"),
-        system: systemPrompt,
+        instructions: systemPrompt,
         prompt: userPrompt,
-        experimental_telemetry: {
+        telemetry: {
           isEnabled: true,
           recordInputs: true,
           recordOutputs: true,

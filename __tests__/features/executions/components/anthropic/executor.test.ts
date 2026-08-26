@@ -59,7 +59,7 @@ describe('anthropicExecutor', () => {
 
     expect(result).toEqual({ ...context, v1: { text: 'response' } });
     expect(generateText).toHaveBeenCalledWith(expect.objectContaining({
-        system: 'You are Hero',
+        instructions: 'You are Hero',
         prompt: 'hello World'
     }));
   });

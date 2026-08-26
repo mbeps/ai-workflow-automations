@@ -94,9 +94,9 @@ export const openRouterExecutor: NodeExecutor<OpenRouterData> = async ({
       generateText,
       {
         model: openrouter("nvidia/nemotron-3-super-120b-a12b:free"),
-        system: systemPrompt,
+        instructions: systemPrompt,
         prompt: userPrompt,
-        experimental_telemetry: {
+        telemetry: {
           isEnabled: true,
           recordInputs: true,
           recordOutputs: true,
