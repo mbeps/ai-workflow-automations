@@ -4,7 +4,6 @@ import ky, { type Options as KyOptions } from "ky";
 import { httpRequestChannel } from "@/inngest/channels/http-request";
 import type { NodeExecutor } from "@/types/node-executor";
 
-
 type HttpRequestData = {
   variableName?: string;
   endpoint?: string;

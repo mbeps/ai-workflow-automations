@@ -5,7 +5,6 @@ import ky from "ky";
 import { slackChannel } from "@/inngest/channels/slack";
 import type { NodeExecutor } from "@/types/node-executor";
 
-
 type SlackData = {
   variableName?: string;
   webhookUrl?: string;

@@ -6,7 +6,7 @@ type GoogleFormTriggerData = Record<string, unknown>;
 /**
  * Inngest node executor for the Google Form trigger.
  * Publishes status updates and returns the context.
- * 
+ *
  * @author Maruf Bepary
  */
 export const googleFormTriggerExecutor: NodeExecutor<

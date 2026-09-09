@@ -5,7 +5,7 @@
  * Displays breadcrumbs, editable workflow name, and save button.
  * EditorSaveButton: Persists node and edge changes from React Flow canvas to database.
  * EditorNameInput: Inline name editor with keyboard shortcuts (Enter/Escape).
- * 
+ *
  * @author Maruf Bepary
  */
 

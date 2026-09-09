@@ -11,7 +11,7 @@ export type GoogleFormTriggerToken = Realtime.Token<
 
 /**
  * Fetches the Inngest Realtime subscription token for monitoring Google Form trigger node status.
- * 
+ *
  * @author Maruf Bepary
  */
 export async function fetchGoogleFormTriggerRealtimeToken(): Promise<GoogleFormTriggerToken> {

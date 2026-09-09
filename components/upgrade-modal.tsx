@@ -20,7 +20,7 @@ interface UpgradeModalProps {
 
 /**
  * A dialog prompting users to subscribe to a Pro plan when they attempt to use premium features.
- * 
+ *
  * @author Maruf Bepary
  * @param open Whether the modal is visible.
  * @param onOpenChange Callback triggered when the modal visibility changes.

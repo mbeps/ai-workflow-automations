@@ -5,11 +5,11 @@ const AUTH_BASE = "";
 
 /**
  * Centralized application route definitions.
- * 
+ *
  * Public Routes: Home page (/).
  * Auth Routes: Login and Signup pages.
  * Protected Routes: Workflows, Credentials, and Executions dashboards and details.
- * 
+ *
  * @author Maruf Bepary
  */
 export const ROUTES = {

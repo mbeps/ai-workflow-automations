@@ -51,9 +51,9 @@ const menuItems = [
 ];
 
 /**
- * Provides the main side navigation for the application, including links to workflows, credentials, and executions, 
+ * Provides the main side navigation for the application, including links to workflows, credentials, and executions,
  * as well as account-related actions (upgrade, billing, sign out).
- * 
+ *
  * @author Maruf Bepary
  * @returns The rendered sidebar component.
  */

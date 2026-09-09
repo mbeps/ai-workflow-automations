@@ -7,7 +7,6 @@ import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
 import type { NodeExecutor } from "@/types/node-executor";
 
-
 type OpenAiData = {
   variableName?: string;
   credentialId?: string;

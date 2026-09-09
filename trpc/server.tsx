@@ -14,14 +14,14 @@ import { appRouter } from "./routers/_app";
 
 /**
  * Returns a stable QueryClient for the current request context.
- * 
+ *
  * @author Maruf Bepary
  */
 export const getQueryClient = cache(makeQueryClient);
 
 /**
  * Server-side tRPC client proxy for use in Server Components.
- * 
+ *
  * @author Maruf Bepary
  */
 export const trpc = createTRPCOptionsProxy({
@@ -34,14 +34,14 @@ export const trpc = createTRPCOptionsProxy({
 
 /**
  * Direct server-side caller for tRPC procedures.
- * 
+ *
  * @author Maruf Bepary
  */
 export const caller = appRouter.createCaller(createTRPCContext);
 
 /**
  * Prefetches a tRPC query on the server to hydrate the client.
- * 
+ *
  * @param queryOptions The query options to prefetch.
  * @author Maruf Bepary
  */
@@ -58,7 +58,7 @@ export function prefetch<T extends ReturnType<TRPCQueryOptions<any>>>(
 
 /**
  * Component to hydrate the QueryClient state on the client side.
- * 
+ *
  * @param props Component props containing children.
  * @author Maruf Bepary
  */

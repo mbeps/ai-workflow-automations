@@ -31,7 +31,7 @@ import { type LoginFormValues, loginSchema } from "@/schemas/auth/login-schema";
 /**
  * Login form component.
  * Allows users to authenticate using email/password or social providers.
- * 
+ *
  * @author Maruf Bepary
  */
 export function LoginForm() {

@@ -7,7 +7,6 @@ import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
 import type { NodeExecutor } from "@/types/node-executor";
 
-
 type GeminiData = {
   variableName?: string;
   credentialId?: string;

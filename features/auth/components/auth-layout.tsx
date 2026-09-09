@@ -5,7 +5,7 @@ import { ROUTES } from "@/routes";
 /**
  * Shared layout component for authentication pages (Login, Register).
  * Provides a centered container with the Nodebase logo and home link.
- * 
+ *
  * @author Maruf Bepary
  */
 export const AuthLayout = ({ children }: { children: React.ReactNode }) => {

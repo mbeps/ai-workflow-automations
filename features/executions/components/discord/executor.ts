@@ -5,7 +5,6 @@ import ky from "ky";
 import { discordChannel } from "@/inngest/channels/discord";
 import type { NodeExecutor } from "@/types/node-executor";
 
-
 type DiscordData = {
   variableName?: string;
   webhookUrl?: string;

@@ -23,7 +23,7 @@ import {
  * for API keys at rest. Credential encryption/decryption uses PBKDF2-SHA512 key
  * derivation with per-call salt and IV. Premium tier required for creation;
  * all queries scoped to authenticated user.
- * 
+ *
  * @author Maruf Bepary
  */
 export const credentialsRouter = createTRPCRouter({

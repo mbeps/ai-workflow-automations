@@ -28,7 +28,7 @@ import { useWorkflowsParams } from "../hooks/use-workflows-params";
 /**
  * Workflow management dashboard component.
  * Provides a searchable, paginated list of user workflows with creation and deletion capabilities.
- * 
+ *
  * @author Maruf Bepary
  */
 export const WorkflowsSearch = () => {

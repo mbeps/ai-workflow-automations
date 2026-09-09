@@ -2,7 +2,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 /**
  * Renders the application's top navigation header, containing common actions and a sidebar trigger.
- * 
+ *
  * @author Maruf Bepary
  * @returns The rendered header component.
  */

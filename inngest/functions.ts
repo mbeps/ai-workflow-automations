@@ -3,15 +3,6 @@ import { NonRetriableError } from "inngest";
 import { getExecutor } from "@/features/executions/lib/executor-registry";
 import prisma from "@/lib/db";
 import { env } from "@/lib/env";
-import { anthropicChannel } from "./channels/anthropic";
-import { discordChannel } from "./channels/discord";
-import { geminiChannel } from "./channels/gemini";
-import { googleFormTriggerChannel } from "./channels/google-form-trigger";
-import { httpRequestChannel } from "./channels/http-request";
-import { manualTriggerChannel } from "./channels/manual-trigger";
-import { openAiChannel } from "./channels/openai";
-import { slackChannel } from "./channels/slack";
-import { stripeTriggerChannel } from "./channels/stripe-trigger";
 import { inngest } from "./client";
 import { topologicalSort } from "./utils";
 
@@ -19,7 +10,7 @@ import { topologicalSort } from "./utils";
  * The core workflow execution engine.
  * Topologically sorts nodes and runs each executor sequentially
  * within a durable Inngest function.
- * 
+ *
  * @author Maruf Bepary
  */
 export const executeWorkflow = inngest.createFunction(

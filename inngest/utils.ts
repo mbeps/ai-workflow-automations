@@ -6,7 +6,7 @@ import { inngest } from "./client";
 /**
  * Topologically sorts nodes based on their connections to determine execution order.
  * Throws an error if a cycle is detected.
- * 
+ *
  * @param nodes List of nodes in the workflow.
  * @param connections List of directed connections between nodes.
  * @returns An array of nodes in topological order.
@@ -60,7 +60,7 @@ export const topologicalSort = (
 
 /**
  * Sends a workflow execution event to Inngest.
- * 
+ *
  * @param data Data containing workflowId and initial context.
  * @author Maruf Bepary
  */

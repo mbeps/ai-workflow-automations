@@ -6,7 +6,7 @@
  * Provides HTTP batch link to /api/trpc endpoint with superjson serialization.
  * Maintains singleton QueryClient in browser to avoid React suspension issues.
  * TRPCReactProvider mounts in root layout; useTRPC hook queries from client components.
- * 
+ *
  * @author Maruf Bepary
  */
 

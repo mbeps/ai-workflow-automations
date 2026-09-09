@@ -59,7 +59,7 @@ interface CredentialFormProps {
  * On create: encrypts key, saves to DB, redirects to detail page; shows upgrade modal if premium required.
  * On update: validates existing session, encrypts new key, saves changes, invalidates cache.
  * Form fields: Name (text), Type (select with provider logos), API Key (password input).
- * 
+ *
  * @param initialData - Optional credential to edit; if omitted, renders in create mode.
  * @author Maruf Bepary
  */
@@ -205,7 +205,7 @@ export const CredentialForm = ({ initialData }: CredentialFormProps) => {
  * Container component for the credential detail/edit page.
  * Fetches credential by ID with suspense, then passes it to CredentialForm in edit mode.
  * Used in `(dashboard)/credentials/[id]/page.tsx` with Suspense boundary.
- * 
+ *
  * @param credentialId - The credential ID to load and edit.
  * @author Maruf Bepary
  */

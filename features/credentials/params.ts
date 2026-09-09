@@ -4,7 +4,7 @@ import { PAGINATION } from "@/config/constants";
 /**
  * URL parameter definitions for the credentials list page.
  * Handles pagination and search state via `nuqs`.
- * 
+ *
  * @author Maruf Bepary
  */
 export const credentialsParams = {

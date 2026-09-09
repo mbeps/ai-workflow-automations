@@ -3,7 +3,7 @@ import { sendWorkflowExecution } from "@/inngest/utils";
 
 /**
  * Google Form webhook handler.
- * Receives form submission data from the Google Apps Script bridge and triggers 
+ * Receives form submission data from the Google Apps Script bridge and triggers
  * the associated workflow execution via Inngest.
  *
  * @author Maruf Bepary

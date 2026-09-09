@@ -9,7 +9,7 @@ import { polarClient } from "@/lib/polar";
 /**
  * Creates the tRPC context for each request.
  * Scopes data to the authenticated user.
- * 
+ *
  * @author Maruf Bepary
  */
 export const createTRPCContext = cache(async () => {
@@ -34,21 +34,21 @@ const t = initTRPC.create({
 
 /**
  * Factory for creating tRPC routers.
- * 
+ *
  * @author Maruf Bepary
  */
 export const createTRPCRouter = t.router;
 
 /**
  * Factory for creating server-side tRPC callers.
- * 
+ *
  * @author Maruf Bepary
  */
 export const createCallerFactory = t.createCallerFactory;
 
 /**
  * Unprotected base procedure.
- * 
+ *
  * @author Maruf Bepary
  */
 export const baseProcedure = t.procedure;
@@ -56,7 +56,7 @@ export const baseProcedure = t.procedure;
 /**
  * Procedure that requires a valid session.
  * Throws UNAUTHORIZED if the user is not logged in.
- * 
+ *
  * @author Maruf Bepary
  */
 export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
@@ -71,8 +71,8 @@ export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
     });
   }
 
-  const authSession =
-    session || (ctx as any).auth || { user: { id: "user_123" } };
+  const authSession = session ||
+    (ctx as any).auth || { user: { id: "user_123" } };
 
   return next({ ctx: { ...ctx, auth: authSession } });
 });
@@ -81,7 +81,7 @@ export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
  * Procedure that requires an active Polar subscription.
  * Extends protectedProcedure to ensure auth first.
  * Throws FORBIDDEN if no active subscription is found.
- * 
+ *
  * @author Maruf Bepary
  */
 export const premiumProcedure = protectedProcedure.use(

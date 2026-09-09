@@ -4,7 +4,7 @@
  * - workflows: CRUD operations (gated by premiumProcedure for create)
  * - credentials: Encrypted API key management (gated by premiumProcedure for create)
  * - executions: Workflow execution history and status queries (protectedProcedure)
- * 
+ *
  * @author Maruf Bepary
  */
 
