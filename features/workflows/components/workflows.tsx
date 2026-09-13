@@ -17,7 +17,7 @@ import {
 } from "@/components/entity-components";
 import { useEntitySearch } from "@/hooks/use-entity-search";
 import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 import {
   useCreateWorkflow,
   useRemoveWorkflow,

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 
 /**
  * Shared layout component for authentication pages (Login, Register).

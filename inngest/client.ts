@@ -1,5 +1,5 @@
 import { Inngest } from "inngest";
-import { env } from "@/lib/env";
+import { env } from "@/config/env";
 
 /**
  * The Inngest client instance for the application.

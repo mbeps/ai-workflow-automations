@@ -32,7 +32,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useSuspenseExecution } from "@/features/executions/hooks/use-executions";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 
 /**
  * Returns a Lucide icon component matching the execution status.

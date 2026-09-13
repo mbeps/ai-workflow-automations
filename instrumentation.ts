@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/nextjs";
-import { env } from "@/lib/env";
+import { env } from "@/config/env";
 
 /**
  * Next.js instrumentation bootstrap function.

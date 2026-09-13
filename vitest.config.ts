@@ -22,7 +22,7 @@ export default defineConfig({
         "**/__tests__/**",
         "prisma/**",
         "inngest/client.ts",
-        "lib/env.ts",
+        "config/env.ts",
         "**/*.d.ts",
         "components/ui/**",
         "components/react-flow/**",

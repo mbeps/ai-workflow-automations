@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { authClient } from "@/lib/auth-client";
-import { env } from "@/lib/env";
+import { env } from "@/config/env";
 
 interface UpgradeModalProps {
   open: boolean;

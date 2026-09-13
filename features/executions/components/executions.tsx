@@ -27,7 +27,7 @@ import {
   ErrorView,
   LoadingView,
 } from "@/components/entity-components";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 import { useSuspenseExecutions } from "../hooks/use-executions";
 import { useExecutionsParams } from "../hooks/use-executions-params";
 

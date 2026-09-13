@@ -53,7 +53,7 @@ const envSchema = z.object({
  * and runtime validation. Guaranteed to contain all required variables on server startup.
  *
  * @example
- * import { env } from "@/lib/env";
+ * import { env } from "@/config/env";
  * const dbUrl = env.DATABASE_URL;
  */
 export const env =

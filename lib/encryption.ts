@@ -1,5 +1,5 @@
 import Cryptr from "cryptr";
-import { env } from "@/lib/env";
+import { env } from "@/config/env";
 
 const cryptr = new Cryptr(env.ENCRYPTION_KEY);
 

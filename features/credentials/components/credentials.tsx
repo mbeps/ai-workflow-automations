@@ -16,7 +16,7 @@ import {
   LoadingView,
 } from "@/components/entity-components";
 import { useEntitySearch } from "@/hooks/use-entity-search";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 import {
   useRemoveCredential,
   useSuspenseCredentials,

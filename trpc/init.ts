@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { cache } from "react";
 import superjson from "superjson";
 import { auth } from "@/lib/auth";
-import { env } from "@/lib/env";
+import { env } from "@/config/env";
 import { polarClient } from "@/lib/polar";
 
 /**

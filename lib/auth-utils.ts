@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { ROUTES } from "../routes";
+import { ROUTES } from "@/config/routes";
 import { auth } from "./auth";
 
 /**

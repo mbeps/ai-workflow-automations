@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
-import { ROUTES } from "@/routes";
+import { ROUTES } from "@/config/routes";
 import {
   type CredentialFormValues as FormValues,
   credentialSchema as formSchema,

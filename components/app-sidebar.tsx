@@ -24,8 +24,8 @@ import {
 } from "@/components/ui/sidebar";
 import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
 import { authClient } from "@/lib/auth-client";
-import { env } from "@/lib/env";
-import { ROUTES } from "@/routes";
+import { env } from "@/config/env";
+import { ROUTES } from "@/config/routes";
 
 const menuItems = [
   {

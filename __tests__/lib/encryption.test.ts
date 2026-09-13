@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { encrypt, decrypt } from '@/lib/encryption';
 
 // Mock env
-vi.mock('@/lib/env', () => ({
+vi.mock('@/config/env', () => ({
   env: {
     ENCRYPTION_KEY: 'test-key-of-at-least-32-characters-long-123',
   },
