@@ -3,7 +3,7 @@
 import { Handle, type NodeProps, Position } from "@xyflow/react";
 import { forwardRef, type ReactNode } from "react";
 
-import { BaseNode } from "./base-node";
+import { BaseNode } from "@/components/react-flow/base-node";
 
 export type PlaceholderNodeProps = Partial<NodeProps> & {
   children?: ReactNode;

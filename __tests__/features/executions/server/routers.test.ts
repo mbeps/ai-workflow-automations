@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { TRPCError } from '@trpc/server';
-import { prismaMock } from '../../../../__tests__/__mocks__/prisma';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
 import { appRouter } from '@/trpc/routers/_app';
 import { PAGINATION } from '@/config/constants';
 

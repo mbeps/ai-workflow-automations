@@ -1,10 +1,10 @@
 import type { NodeProps } from "@xyflow/react";
 import { memo, useState } from "react";
 import { useNodeStatus } from "@/features/executions/hooks/use-node-status";
+import { BaseTriggerNode } from "@/features/triggers/components/base-trigger-node";
+import { fetchStripeTriggerRealtimeToken } from "@/features/triggers/components/stripe-trigger/actions";
+import { StripeTriggerDialog } from "@/features/triggers/components/stripe-trigger/dialog";
 import { STRIPE_TRIGGER_CHANNEL_NAME } from "@/inngest/channels/stripe-trigger";
-import { BaseTriggerNode } from "../base-trigger-node";
-import { fetchStripeTriggerRealtimeToken } from "./actions";
-import { StripeTriggerDialog } from "./dialog";
 
 export const StripeTriggerNode = memo((props: NodeProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);

@@ -34,7 +34,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   httpRequestSchema as formSchema,
   type HttpRequestFormValues,
-} from "@/schemas/executions/http-request-schema";
+} from "@/schemas/executions/http-request.schema";
 
 interface Props {
   open: boolean;

@@ -1,10 +1,10 @@
 import { ExecutionStatus, type NodeType } from "@prisma/client";
 import { NonRetriableError } from "inngest";
-import { getExecutor } from "@/features/executions/lib/executor-registry";
-import prisma from "@/lib/db";
 import { env } from "@/config/env";
-import { inngest } from "./client";
-import { topologicalSort } from "./utils";
+import { getExecutor } from "@/features/executions/lib/executor-registry";
+import { inngest } from "@/inngest/client";
+import { topologicalSort } from "@/inngest/utils";
+import prisma from "@/lib/db";
 
 /**
  * The core workflow execution engine.

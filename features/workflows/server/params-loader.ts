@@ -1,5 +1,5 @@
 import { createLoader } from "nuqs/server";
-import { workflowsParams } from "../params";
+import { workflowsParams } from "@/features/workflows/params";
 
 /**
  * Server-side URL query parameter loader for workflows.

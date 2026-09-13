@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { discordSchema } from "@/schemas/executions/discord-schema";
+import { discordSchema } from "@/schemas/executions/discord.schema";
 
 describe("Discord Schema", () => {
   it("should validate valid Discord data", () => {

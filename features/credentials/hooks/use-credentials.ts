@@ -6,8 +6,8 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useCredentialsParams } from "@/features/credentials/hooks/use-credentials-params";
 import { useTRPC } from "@/trpc/client";
-import { useCredentialsParams } from "./use-credentials-params";
 
 /**
  * Hook to fetch all credentials with suspense for pagination and search.

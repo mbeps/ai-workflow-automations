@@ -3,7 +3,7 @@ import { decode } from "html-entities";
 import { NonRetriableError } from "inngest";
 import ky from "ky";
 import { discordChannel } from "@/inngest/channels/discord";
-import type { NodeExecutor } from "@/types/node-executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type DiscordData = {
   variableName?: string;

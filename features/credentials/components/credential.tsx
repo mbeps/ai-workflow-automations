@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,18 +30,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 import { ROUTES } from "@/config/routes";
-import {
-  type CredentialFormValues as FormValues,
-  credentialSchema as formSchema,
-} from "@/schemas/credentials/credential-schema";
 import {
   useCreateCredential,
   useSuspenseCredential,
   useUpdateCredential,
-} from "../hooks/use-credentials";
-import { MODEL_PROVIDERS } from "../models";
+} from "@/features/credentials/hooks/use-credentials";
+import { MODEL_PROVIDERS } from "@/features/credentials/models";
+import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
+import {
+  type CredentialFormValues as FormValues,
+  credentialSchema as formSchema,
+} from "@/schemas/credentials/credential.schema";
 
 interface CredentialFormProps {
   initialData?: {

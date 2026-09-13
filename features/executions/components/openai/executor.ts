@@ -5,7 +5,7 @@ import { NonRetriableError } from "inngest";
 import { openAiChannel } from "@/inngest/channels/openai";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type OpenAiData = {
   variableName?: string;

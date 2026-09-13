@@ -1,9 +1,9 @@
 import { beforeAll, vi } from "vitest";
-import prismaMock from "./__tests__/__mocks__/prisma";
-// import './__tests__/__mocks__/encryption';
-import "./__tests__/__mocks__/inngest";
-import "./__tests__/__mocks__/polar";
-import "./__tests__/__mocks__/ai";
+import prismaMock from "@/__tests__/__mocks__/prisma";
+// import '@/__tests__/__mocks__/encryption';
+import "@/__tests__/__mocks__/inngest";
+import "@/__tests__/__mocks__/polar";
+import "@/__tests__/__mocks__/ai";
 
 // Provide mandatory environment variables for tests
 process.env.ENCRYPTION_KEY = "test_encryption_key_32_characters_long";

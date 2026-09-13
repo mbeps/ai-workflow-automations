@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/config/routes";
-import { auth } from "./auth";
+import { auth } from "@/lib/auth";
 
 /**
  * Ensures the user is authenticated in Server Components.

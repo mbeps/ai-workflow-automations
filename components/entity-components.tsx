@@ -8,15 +8,19 @@ import {
   TrashIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   Empty,
   EmptyContent,
@@ -24,8 +28,9 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "./ui/empty";
-import { Input } from "./ui/input";
+} from "@/components/ui/empty";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 type EntityHeaderProps = {
   title: string;

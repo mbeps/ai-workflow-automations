@@ -1,5 +1,5 @@
 import { createLoader } from "nuqs/server";
-import { credentialsParams } from "../params";
+import { credentialsParams } from "@/features/credentials/params";
 
 /**
  * Server-side URL parameter loader for credentials list page.

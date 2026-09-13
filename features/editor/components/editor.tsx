@@ -32,9 +32,9 @@ import "@xyflow/react/dist/style.css";
 import { NodeType } from "@prisma/client";
 import { useSetAtom } from "jotai";
 import { nodeComponents } from "@/config/node-components";
-import { editorAtom } from "../store/atoms";
-import { AddNodeButton } from "./add-node-button";
-import { ExecuteWorkflowButton } from "./execute-workflow-button";
+import { AddNodeButton } from "@/features/editor/components/add-node-button";
+import { ExecuteWorkflowButton } from "@/features/editor/components/execute-workflow-button";
+import { editorAtom } from "@/features/editor/store/atoms";
 
 export const EditorLoading = () => {
   return <LoadingView message="Loading editor..." />;

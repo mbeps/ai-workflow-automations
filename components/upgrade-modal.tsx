@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { authClient } from "@/lib/auth-client";
 import { env } from "@/config/env";
+import { authClient } from "@/lib/auth-client";
 
 interface UpgradeModalProps {
   open: boolean;

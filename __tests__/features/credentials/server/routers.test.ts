@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { TRPCError } from '@trpc/server';
 
-import { prismaMock } from '../../../../__tests__/__mocks__/prisma';
-import '../../../../__tests__/__mocks__/encryption';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
+import '@/__tests__/__mocks__/encryption';
 import { appRouter } from '@/trpc/routers/_app';
 
 describe('credentialsRouter', () => {

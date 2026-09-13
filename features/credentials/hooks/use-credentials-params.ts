@@ -1,5 +1,5 @@
 import { useQueryStates } from "nuqs";
-import { credentialsParams } from "../params";
+import { credentialsParams } from "@/features/credentials/params";
 
 /**
  * Hook to read and update credentials list URL parameters (page, pageSize, search).

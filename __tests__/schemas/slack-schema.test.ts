@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { slackSchema } from "@/schemas/executions/slack-schema";
+import { slackSchema } from "@/schemas/executions/slack.schema";
 
 describe("Slack Schema", () => {
   it("should validate valid Slack data", () => {

@@ -1,5 +1,5 @@
 import { useQueryStates } from "nuqs";
-import { workflowsParams } from "../params";
+import { workflowsParams } from "@/features/workflows/params";
 
 /**
  * React hook for managing workflows list query parameters.

@@ -25,8 +25,8 @@ vi.mock('@/inngest/client', async (importOriginal) => {
 vi.unmock('@/inngest/utils');
 
 import { executeWorkflow } from '@/inngest/functions';
-import { prismaMock } from '../__mocks__/prisma';
-import { stepMock } from '../__mocks__/inngest';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
+import { stepMock } from '@/__tests__/__mocks__/inngest';
 import { getExecutor } from '@/features/executions/lib/executor-registry';
 
 const makeNode = (id: string, type: string = 'INITIAL', data: Record<string, unknown> = {}) =>

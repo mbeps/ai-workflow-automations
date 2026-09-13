@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import '../../../../__mocks__/encryption';
+import '@/__tests__/__mocks__/encryption';
 import { geminiExecutor } from '@/features/executions/components/gemini/executor';
-import { prismaMock } from '../../../../__mocks__/prisma';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 import { generateText } from 'ai';
 import { NonRetriableError } from 'inngest';
 

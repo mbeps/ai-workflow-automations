@@ -5,7 +5,7 @@ import { NonRetriableError } from "inngest";
 import { geminiChannel } from "@/inngest/channels/gemini";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type GeminiData = {
   variableName?: string;

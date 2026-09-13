@@ -6,7 +6,7 @@
  */
 
 import { useQueryStates } from "nuqs";
-import { executionsParams } from "../params";
+import { executionsParams } from "@/features/executions/params";
 
 /**
  * Hook to read and update execution list URL parameters.

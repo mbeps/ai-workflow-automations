@@ -7,17 +7,17 @@
  */
 
 import { NodeType } from "@prisma/client";
+import { anthropicExecutor } from "@/features/executions/components/anthropic/executor";
+import { discordExecutor } from "@/features/executions/components/discord/executor";
+import { geminiExecutor } from "@/features/executions/components/gemini/executor";
+import { httpRequestExecutor } from "@/features/executions/components/http-request/executor";
+import { openAiExecutor } from "@/features/executions/components/openai/executor";
+import { openRouterExecutor } from "@/features/executions/components/openrouter/executor";
+import { slackExecutor } from "@/features/executions/components/slack/executor";
 import { googleFormTriggerExecutor } from "@/features/triggers/components/google-form-trigger/executor";
 import { manualTriggerExecutor } from "@/features/triggers/components/manual-trigger/executor";
 import { stripeTriggerExecutor } from "@/features/triggers/components/stripe-trigger/executor";
-import type { NodeExecutor } from "@/types/node-executor";
-import { anthropicExecutor } from "../components/anthropic/executor";
-import { discordExecutor } from "../components/discord/executor";
-import { geminiExecutor } from "../components/gemini/executor";
-import { httpRequestExecutor } from "../components/http-request/executor";
-import { openAiExecutor } from "../components/openai/executor";
-import { openRouterExecutor } from "../components/openrouter/executor";
-import { slackExecutor } from "../components/slack/executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 /**
  * Complete mapping of all node types to their executor functions.

@@ -15,13 +15,13 @@ import {
   ErrorView,
   LoadingView,
 } from "@/components/entity-components";
-import { useEntitySearch } from "@/hooks/use-entity-search";
 import { ROUTES } from "@/config/routes";
 import {
   useRemoveCredential,
   useSuspenseCredentials,
-} from "../hooks/use-credentials";
-import { useCredentialsParams } from "../hooks/use-credentials-params";
+} from "@/features/credentials/hooks/use-credentials";
+import { useCredentialsParams } from "@/features/credentials/hooks/use-credentials-params";
+import { useEntitySearch } from "@/hooks/use-entity-search";
 
 /**
  * Search input component for filtering credentials by name.
@@ -172,7 +172,7 @@ export const CredentialsEmpty = () => {
   );
 };
 
-import { getModelProviderLogo } from "../models";
+import { getModelProviderLogo } from "@/features/credentials/models";
 
 /**
  * List item rendering a single credential with provider logo, name, timestamps, and delete button.

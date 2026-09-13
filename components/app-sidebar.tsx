@@ -22,10 +22,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
-import { authClient } from "@/lib/auth-client";
 import { env } from "@/config/env";
 import { ROUTES } from "@/config/routes";
+import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
+import { authClient } from "@/lib/auth-client";
 
 const menuItems = [
   {

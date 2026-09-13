@@ -15,15 +15,15 @@ import {
   ErrorView,
   LoadingView,
 } from "@/components/entity-components";
-import { useEntitySearch } from "@/hooks/use-entity-search";
-import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 import { ROUTES } from "@/config/routes";
 import {
   useCreateWorkflow,
   useRemoveWorkflow,
   useSuspenseWorkflows,
-} from "../hooks/use-workflows";
-import { useWorkflowsParams } from "../hooks/use-workflows-params";
+} from "@/features/workflows/hooks/use-workflows";
+import { useWorkflowsParams } from "@/features/workflows/hooks/use-workflows-params";
+import { useEntitySearch } from "@/hooks/use-entity-search";
+import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
 
 /**
  * Workflow management dashboard component.

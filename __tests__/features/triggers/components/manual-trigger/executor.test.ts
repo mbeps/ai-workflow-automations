@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { manualTriggerExecutor } from '@/features/triggers/components/manual-trigger/executor';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 
 describe('manualTriggerExecutor', () => {
   const baseParams = {

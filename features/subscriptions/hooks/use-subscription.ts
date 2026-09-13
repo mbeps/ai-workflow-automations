@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { authClient } from "@/lib/auth-client";
 import { env } from "@/config/env";
+import { authClient } from "@/lib/auth-client";
 
 /**
  * Hook for fetching the Polar.sh subscription status.

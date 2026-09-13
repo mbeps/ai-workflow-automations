@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { slackExecutor } from '@/features/executions/components/slack/executor';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 import ky from 'ky';
 
 vi.mock('ky', () => ({

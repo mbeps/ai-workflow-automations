@@ -10,11 +10,11 @@ import { env } from "@/config/env";
  */
 export async function register() {
   if (env.NEXT_RUNTIME === "nodejs") {
-    await import("./sentry.server.config");
+    await import("@/sentry.server.config");
   }
 
   if (env.NEXT_RUNTIME === "edge") {
-    await import("./sentry.edge.config");
+    await import("@/sentry.edge.config");
   }
 }
 

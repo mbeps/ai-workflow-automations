@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,9 +23,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { authClient } from "@/lib/auth-client";
 import { ROUTES } from "@/config/routes";
-import { type LoginFormValues, loginSchema } from "@/schemas/auth/login-schema";
+import { authClient } from "@/lib/auth-client";
+import { type LoginFormValues, loginSchema } from "@/schemas/auth/login.schema";
 
 /**
  * Login form component.

@@ -1,6 +1,3 @@
-import { CredentialType } from "@prisma/client";
-import z from "zod";
-import { PAGINATION } from "@/config/constants";
 import prisma from "@/lib/db";
 import { encrypt } from "@/lib/encryption";
 import {

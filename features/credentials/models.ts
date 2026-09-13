@@ -1,5 +1,6 @@
 import { CredentialType } from "@prisma/client";
-import type { ModelProvider } from "@/types/model-provider";
+import { ASSETS } from "@/config/assets";
+import type { ModelProvider } from "@/types/credentials/model-provider";
 
 /**
  * Metadata for supported AI model providers (OpenAI, Anthropic, Gemini, OpenRouter).
@@ -11,22 +12,22 @@ export const MODEL_PROVIDERS: ModelProvider[] = [
   {
     type: CredentialType.OPENAI,
     label: "OpenAI",
-    logo: "/logos/openai.svg",
+    logo: ASSETS.LOGOS.OPENAI.path,
   },
   {
     type: CredentialType.ANTHROPIC,
     label: "Anthropic",
-    logo: "/logos/anthropic.svg",
+    logo: ASSETS.LOGOS.ANTHROPIC.path,
   },
   {
     type: CredentialType.GEMINI,
     label: "Gemini",
-    logo: "/logos/gemini.svg",
+    logo: ASSETS.LOGOS.GEMINI.path,
   },
   {
     type: CredentialType.OPENROUTER,
     label: "OpenRouter",
-    logo: "/logos/openrouter.svg",
+    logo: ASSETS.LOGOS.OPENROUTER.path,
   },
 ];
 
@@ -41,6 +42,7 @@ export const MODEL_PROVIDERS: ModelProvider[] = [
  */
 export const getModelProviderLogo = (type: CredentialType): string => {
   return (
-    MODEL_PROVIDERS.find((p) => p.type === type)?.logo || "/logos/openai.svg"
+    MODEL_PROVIDERS.find((p) => p.type === type)?.logo ||
+    ASSETS.LOGOS.OPENAI.path
   );
 };

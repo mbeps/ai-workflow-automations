@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { loginSchema, type LoginFormValues } from '@/schemas/auth/login-schema';
+import { loginSchema, type LoginFormValues } from '@/schemas/auth/login.schema';
 import {
   registerSchema,
   type RegisterFormValues,
-} from '@/schemas/auth/register-schema';
+} from '@/schemas/auth/register.schema';
 
 describe('loginSchema', () => {
   const valid = { email: 'user@example.com', password: 'secret' };

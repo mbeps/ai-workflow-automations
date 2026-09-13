@@ -28,8 +28,8 @@ import {
   LoadingView,
 } from "@/components/entity-components";
 import { ROUTES } from "@/config/routes";
-import { useSuspenseExecutions } from "../hooks/use-executions";
-import { useExecutionsParams } from "../hooks/use-executions-params";
+import { useSuspenseExecutions } from "@/features/executions/hooks/use-executions";
+import { useExecutionsParams } from "@/features/executions/hooks/use-executions-params";
 
 /**
  * Renders paginated list of execution items with fallback for empty state.

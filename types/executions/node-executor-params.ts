@@ -1,5 +1,5 @@
-import type { StepTools } from "./step-tools";
-import type { WorkflowContext } from "./workflow-context";
+import type { StepTools } from "@/types/executions/step-tools";
+import type { WorkflowContext } from "@/types/workflows/workflow-context";
 
 /**
  * Parameters passed to a node executor function during workflow execution.
@@ -18,5 +18,5 @@ export interface NodeExecutorParams<TData = Record<string, unknown>> {
   /** Inngest step utilities for creating durable checkpoints and retries. */
   step: StepTools;
   /** Utility function to publish real-time execution status updates. */
-  publish: any;
+  publish: (event?: unknown) => unknown;
 }

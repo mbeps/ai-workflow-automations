@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { httpRequestExecutor } from '@/features/executions/components/http-request/executor';
-import { prismaMock } from '../../../../__mocks__/prisma';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 import ky from 'ky';
 import { NonRetriableError } from 'inngest';
 

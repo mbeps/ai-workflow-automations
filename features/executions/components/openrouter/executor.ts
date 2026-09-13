@@ -5,7 +5,7 @@ import { NonRetriableError } from "inngest";
 import { openrouterChannel } from "@/inngest/channels/openrouter";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type OpenRouterData = {
   variableName?: string;
