@@ -7,17 +7,27 @@ import { auth } from "@/lib/auth";
 import { polarClient } from "@/lib/polar";
 
 /**
+ * Extended tRPC context used during testing to inject mocks.
+ */
+interface TestContext {
+  auth?: { user: { id: string } };
+  customer?: unknown;
+}
+
+/**
  * Creates the tRPC context for each request.
  * Scopes data to the authenticated user.
  *
  * @author Maruf Bepary
  */
-export const createTRPCContext = cache(async () => {
-  /**
-   * @see: https://trpc.io/docs/server/context
-   */
-  return { userId: "user_123" };
-});
+export const createTRPCContext = cache(
+  async (): Promise<TestContext & { userId: string }> => {
+    /**
+     * @see: https://trpc.io/docs/server/context
+     */
+    return { userId: "user_123" };
+  },
+);
 
 // Avoid exporting the entire t-object
 // since it's not very descriptive.
@@ -72,7 +82,9 @@ export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
   }
 
   const authSession = session ||
-    (ctx as any).auth || { user: { id: "user_123" } };
+    (ctx as TestContext).auth || {
+      user: { id: "user_123" },
+    };
 
   return next({ ctx: { ...ctx, auth: authSession } });
 });
@@ -88,9 +100,11 @@ export const premiumProcedure = protectedProcedure.use(
   async ({ ctx, next }) => {
     if (
       env.NEXT_PUBLIC_ENABLE_POLAR !== "true" ||
-      (process.env.NODE_ENV === "test" && (ctx as any).customer)
+      (process.env.NODE_ENV === "test" && (ctx as TestContext).customer)
     ) {
-      return next({ ctx: { ...ctx, customer: (ctx as any).customer || null } });
+      return next({
+        ctx: { ...ctx, customer: (ctx as TestContext).customer || null },
+      });
     }
 
     const customer = await polarClient.customers.getStateExternal({

@@ -1,4 +1,4 @@
-import { NodeType } from "@prisma/client";
+import { NodeType, type Prisma } from "@prisma/client";
 import type { Edge, Node } from "@xyflow/react";
 import { generateSlug } from "random-word-slugs";
 import { sendWorkflowExecution } from "@/inngest/utils";
@@ -95,7 +95,7 @@ export const workflowsRouter = createTRPCRouter({
             name: node.type || "unknown",
             type: node.type as NodeType,
             position: node.position,
-            data: node.data || {},
+            data: (node.data || {}) as Prisma.InputJsonValue,
           })),
         });
 
