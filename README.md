@@ -38,7 +38,7 @@ Nodebase is a visual AI workflow automation platform. Build automation pipelines
 
 Below are the requirements to run this project:
 
-- **Node.js** 20 or higher
+- **Node.js** 24 LTS or higher
 - **PostgreSQL** 17 with pgvector extension 
 - The following environment variables must be configured
 - **Inngest** 
@@ -72,7 +72,7 @@ Below are the requirements to run this project:
 # Setting Up Project
 
 ## Prerequisites
-- [Node.js](https://nodejs.org) 20 or higher
+- [Node.js](https://nodejs.org) 24 LTS or higher
 - [Docker](https://www.docker.com) and Docker Compose
 
 ## 1. Clone the Repository
