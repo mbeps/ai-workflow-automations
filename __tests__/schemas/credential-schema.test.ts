@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { credentialSchema } from "@/schemas/credentials/credential-schema";
+import { credentialSchema } from "@/schemas/credentials/credential.schema";
 import { CredentialType } from "@prisma/client";
 
 describe("Credential Schema", () => {

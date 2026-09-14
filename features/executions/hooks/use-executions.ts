@@ -6,8 +6,8 @@
  */
 
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { useExecutionsParams } from "@/features/executions/hooks/use-executions-params";
 import { useTRPC } from "@/trpc/client";
-import { useExecutionsParams } from "./use-executions-params";
 
 /**
  * Fetches paginated execution list with suspense.

@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import '../../../../__mocks__/encryption';
+import '@/__tests__/__mocks__/encryption';
 import { anthropicExecutor } from '@/features/executions/components/anthropic/executor';
-import { prismaMock } from '../../../../__tests__/__mocks__/prisma';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { prismaMock } from '@/__tests__/__tests__/__mocks__/prisma';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 import { generateText } from 'ai';
 import { NonRetriableError } from 'inngest';
 
@@ -59,7 +59,7 @@ describe('anthropicExecutor', () => {
 
     expect(result).toEqual({ ...context, v1: { text: 'response' } });
     expect(generateText).toHaveBeenCalledWith(expect.objectContaining({
-        system: 'You are Hero',
+        instructions: 'You are Hero',
         prompt: 'hello World'
     }));
   });

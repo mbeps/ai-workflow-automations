@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,17 +23,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { ROUTES } from "@/config/routes";
 import { authClient } from "@/lib/auth-client";
-import { ROUTES } from "@/routes";
 import {
   type RegisterFormValues,
   registerSchema,
-} from "@/schemas/auth/register-schema";
+} from "@/schemas/auth/register.schema";
 
 /**
  * Registration form component.
  * Allows users to sign up using email/password or social providers.
- * 
+ *
  * @author Maruf Bepary
  */
 export function RegisterForm() {

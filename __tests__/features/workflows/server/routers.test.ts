@@ -1,8 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { prismaMock } from '../../../../__tests__/__mocks__/prisma';
+import { TRPCError } from '@trpc/server';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
 import { appRouter } from '@/trpc/routers/_app';
 import { sendWorkflowExecution } from '@/inngest/utils';
 import { NodeType } from '@prisma/client';
+import { PAGINATION } from '@/config/constants';
 
 // Mock inngest utils
 vi.mock('@/inngest/utils', () => ({
@@ -153,5 +155,56 @@ describe('workflowsRouter', () => {
       data: { name: 'New Name' },
     });
     expect(result.name).toBe('New Name');
+  });
+
+  it("getOne of another user's workflow surfaces Prisma not-found as INTERNAL_SERVER_ERROR", async () => {
+    // ponytail: findUniqueOrThrow scoped by userId means cross-user rows reject
+    // at the DB level; the mock simulates Prisma's P2025 rejection.
+    const input = { id: 'wf_other' };
+    prismaMock.workflow.findUniqueOrThrow.mockRejectedValue(
+      new Error('Record to access not found'),
+    );
+
+    await expect(caller.workflows.getOne(input)).rejects.toThrow(TRPCError);
+    await expect(caller.workflows.getOne(input)).rejects.toMatchObject({
+      code: 'INTERNAL_SERVER_ERROR',
+    });
+    expect(prismaMock.workflow.findUniqueOrThrow).toHaveBeenCalledWith({
+      where: { id: 'wf_other', userId: 'user_123' },
+      include: { nodes: true, connections: true },
+    });
+  });
+
+  it("remove of another user's workflow surfaces Prisma not-found error", async () => {
+    const input = { id: 'wf_other' };
+    prismaMock.workflow.delete.mockRejectedValue(
+      new Error('Record to delete does not exist'),
+    );
+
+    await expect(caller.workflows.remove(input)).rejects.toThrow(TRPCError);
+    expect(prismaMock.workflow.delete).toHaveBeenCalledWith({
+      where: { id: 'wf_other', userId: 'user_123' },
+    });
+  });
+
+  it('getMany should reject pageSize above MAX_PAGE_SIZE', async () => {
+    await expect(
+      caller.workflows.getMany({
+        page: 1,
+        pageSize: PAGINATION.MAX_PAGE_SIZE + 1,
+      }),
+    ).rejects.toThrow(TRPCError);
+    expect(prismaMock.workflow.findMany).not.toHaveBeenCalled();
+  });
+
+  it('getMany should compute skip/take from page and pageSize', async () => {
+    prismaMock.workflow.findMany.mockResolvedValue([]);
+    prismaMock.workflow.count.mockResolvedValue(0);
+
+    await caller.workflows.getMany({ page: 3, pageSize: 10 });
+
+    expect(prismaMock.workflow.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({ skip: 20, take: 10 }),
+    );
   });
 });

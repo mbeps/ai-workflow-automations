@@ -10,9 +10,11 @@ import { sendWorkflowExecution } from "@/inngest/utils";
  * @param request - The incoming webhook request from Stripe.
  * @returns A JSON response indicating the success or failure of the triggering operation.
  */
-export async function POST(request: NextRequest) {
+import { logger } from "@/lib/logger";
+
+export async function POST(req: NextRequest) {
   try {
-    const url = new URL(request.url);
+    const url = new URL(req.url);
     const workflowId = url.searchParams.get("workflowId");
 
     if (!workflowId) {
@@ -25,7 +27,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
+    const body = await req.json();
 
     const stripeData = {
       // Event metadata
@@ -46,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    console.error("Stripe webhook error:", error);
+    logger.error("Stripe webhook error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to process Stripe event" },
       { status: 500 },

@@ -1,5 +1,5 @@
-import type { NodeExecutorParams } from "./node-executor-params";
-import type { WorkflowContext } from "./workflow-context";
+import type { NodeExecutorParams } from "@/types/executions/node-executor-params";
+import type { WorkflowContext } from "@/types/workflows/workflow-context";
 
 /**
  * Signature for a node executor function.

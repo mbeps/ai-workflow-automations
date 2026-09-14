@@ -11,7 +11,7 @@ export type ManualTriggerToken = Realtime.Token<
 
 /**
  * Fetches the Inngest Realtime subscription token for monitoring Manual trigger node status.
- * 
+ *
  * @author Maruf Bepary
  */
 export async function fetchManualTriggerRealtimeToken(): Promise<ManualTriggerToken> {

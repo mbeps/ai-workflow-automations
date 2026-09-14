@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { httpRequestSchema } from "@/schemas/executions/http-request-schema";
+import { httpRequestSchema } from "@/schemas/executions/http-request.schema";
 
 describe("HTTP Request Schema", () => {
   it("should validate valid HTTP request data", () => {

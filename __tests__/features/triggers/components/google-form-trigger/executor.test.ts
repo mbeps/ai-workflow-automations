@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { googleFormTriggerExecutor } from '@/features/triggers/components/google-form-trigger/executor';
-import { stepMock, publishMock } from '../../../../__mocks__/inngest';
+import { stepMock, publishMock } from '@/__tests__/__mocks__/inngest';
 
 describe('googleFormTriggerExecutor', () => {
   const baseParams = {

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { loginSchema } from '@/schemas/auth/login-schema';
-import { registerSchema } from '@/schemas/auth/register-schema';
+import { loginSchema } from '@/schemas/auth/login.schema';
+import { registerSchema } from '@/schemas/auth/register.schema';
 import { requireAuth, requireUnauth } from '@/lib/auth-utils';
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';

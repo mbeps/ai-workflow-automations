@@ -27,7 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   slackSchema as formSchema,
   type SlackFormValues,
-} from "@/schemas/executions/slack-schema";
+} from "@/schemas/executions/slack.schema";
 
 interface Props {
   open: boolean;

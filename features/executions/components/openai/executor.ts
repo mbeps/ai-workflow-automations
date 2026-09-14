@@ -5,8 +5,7 @@ import { NonRetriableError } from "inngest";
 import { openAiChannel } from "@/inngest/channels/openai";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
-
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type OpenAiData = {
   variableName?: string;
@@ -91,9 +90,9 @@ export const openAiExecutor: NodeExecutor<OpenAiData> = async ({
   try {
     const { steps } = await step.ai.wrap("openai-generate-text", generateText, {
       model: openai("gpt-4"),
-      system: systemPrompt,
+      instructions: systemPrompt,
       prompt: userPrompt,
-      experimental_telemetry: {
+      telemetry: {
         isEnabled: true,
         recordInputs: true,
         recordOutputs: true,

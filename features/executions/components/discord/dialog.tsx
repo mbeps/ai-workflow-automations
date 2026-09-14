@@ -27,7 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   type DiscordFormValues,
   discordSchema as formSchema,
-} from "@/schemas/executions/discord-schema";
+} from "@/schemas/executions/discord.schema";
 
 interface Props {
   open: boolean;

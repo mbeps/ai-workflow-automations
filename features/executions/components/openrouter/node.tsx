@@ -4,12 +4,12 @@ import { CredentialType } from "@prisma/client";
 import { type Node, type NodeProps, useReactFlow } from "@xyflow/react";
 import { memo, useState } from "react";
 import { getModelProviderLogo } from "@/features/credentials/models";
+import { BaseExecutionNode } from "@/features/executions/components/base-execution-node";
+import { fetchOpenRouterRealtimeToken } from "@/features/executions/components/openrouter/actions";
+import { OpenRouterDialog } from "@/features/executions/components/openrouter/dialog";
+import { useNodeStatus } from "@/features/executions/hooks/use-node-status";
 import { OPENROUTER_CHANNEL_NAME } from "@/inngest/channels/openrouter";
 import type { OpenRouterFormValues } from "@/schemas/executions/ai-model-schemas";
-import { useNodeStatus } from "../../hooks/use-node-status";
-import { BaseExecutionNode } from "../base-execution-node";
-import { fetchOpenRouterRealtimeToken } from "./actions";
-import { OpenRouterDialog } from "./dialog";
 
 type OpenRouterNodeData = {
   variableName?: string;

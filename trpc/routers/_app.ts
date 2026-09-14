@@ -4,14 +4,14 @@
  * - workflows: CRUD operations (gated by premiumProcedure for create)
  * - credentials: Encrypted API key management (gated by premiumProcedure for create)
  * - executions: Workflow execution history and status queries (protectedProcedure)
- * 
+ *
  * @author Maruf Bepary
  */
 
 import { credentialsRouter } from "@/features/credentials/server/routers";
 import { executionsRouter } from "@/features/executions/server/routers";
 import { workflowsRouter } from "@/features/workflows/server/routers";
-import { createTRPCRouter } from "../init";
+import { createTRPCRouter } from "@/trpc/init";
 
 export const appRouter = createTRPCRouter({
   workflows: workflowsRouter,

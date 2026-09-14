@@ -22,10 +22,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { env } from "@/config/env";
+import { ROUTES } from "@/config/routes";
 import { useHasActiveSubscription } from "@/features/subscriptions/hooks/use-subscription";
 import { authClient } from "@/lib/auth-client";
-import { env } from "@/lib/env";
-import { ROUTES } from "@/routes";
 
 const menuItems = [
   {
@@ -51,9 +51,9 @@ const menuItems = [
 ];
 
 /**
- * Provides the main side navigation for the application, including links to workflows, credentials, and executions, 
+ * Provides the main side navigation for the application, including links to workflows, credentials, and executions,
  * as well as account-related actions (upgrade, billing, sign out).
- * 
+ *
  * @author Maruf Bepary
  * @returns The rendered sidebar component.
  */

@@ -7,6 +7,7 @@ import { GlobeIcon, MousePointerIcon } from "lucide-react";
 import Image from "next/image";
 import { useCallback } from "react";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -16,7 +17,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { getModelProviderLogo } from "@/features/credentials/models";
-import { Separator } from "./ui/separator";
 
 export type NodeTypeOption = {
   type: NodeType;
@@ -100,7 +100,7 @@ interface NodeSelectorProps {
 
 /**
  * A side panel (sheet) that allows users to select and add various trigger and execution nodes to the workflow canvas.
- * 
+ *
  * @author Maruf Bepary
  * @param open Whether the selector panel is visible.
  * @param onOpenChange Callback triggered when the panel visibility changes.

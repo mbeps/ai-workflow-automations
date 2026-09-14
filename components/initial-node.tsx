@@ -3,13 +3,13 @@
 import type { NodeProps } from "@xyflow/react";
 import { PlusIcon } from "lucide-react";
 import { memo, useState } from "react";
-import { NodeSelector } from "./node-selector";
-import { PlaceholderNode } from "./react-flow/placeholder-node";
-import { WorkflowNode } from "./workflow-node";
+import { NodeSelector } from "@/components/node-selector";
+import { PlaceholderNode } from "@/components/react-flow/placeholder-node";
+import { WorkflowNode } from "@/components/workflow-node";
 
 /**
  * A special terminal node for the workflow canvas that serves as the entry point for adding the first trigger node.
- * 
+ *
  * @author Maruf Bepary
  * @param props Inherits React Flow NodeProps.
  * @returns The rendered initial node component.

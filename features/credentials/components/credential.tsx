@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,18 +30,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
-import { ROUTES } from "@/routes";
-import {
-  type CredentialFormValues as FormValues,
-  credentialSchema as formSchema,
-} from "@/schemas/credentials/credential-schema";
+import { ROUTES } from "@/config/routes";
 import {
   useCreateCredential,
   useSuspenseCredential,
   useUpdateCredential,
-} from "../hooks/use-credentials";
-import { MODEL_PROVIDERS } from "../models";
+} from "@/features/credentials/hooks/use-credentials";
+import { MODEL_PROVIDERS } from "@/features/credentials/models";
+import { useUpgradeModal } from "@/hooks/use-upgrade-modal";
+import {
+  type CredentialFormValues as FormValues,
+  credentialSchema as formSchema,
+} from "@/schemas/credentials/credential.schema";
 
 interface CredentialFormProps {
   initialData?: {
@@ -59,7 +58,7 @@ interface CredentialFormProps {
  * On create: encrypts key, saves to DB, redirects to detail page; shows upgrade modal if premium required.
  * On update: validates existing session, encrypts new key, saves changes, invalidates cache.
  * Form fields: Name (text), Type (select with provider logos), API Key (password input).
- * 
+ *
  * @param initialData - Optional credential to edit; if omitted, renders in create mode.
  * @author Maruf Bepary
  */
@@ -205,7 +204,7 @@ export const CredentialForm = ({ initialData }: CredentialFormProps) => {
  * Container component for the credential detail/edit page.
  * Fetches credential by ID with suspense, then passes it to CredentialForm in edit mode.
  * Used in `(dashboard)/credentials/[id]/page.tsx` with Suspense boundary.
- * 
+ *
  * @param credentialId - The credential ID to load and edit.
  * @author Maruf Bepary
  */

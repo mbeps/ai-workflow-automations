@@ -3,13 +3,15 @@ import { sendWorkflowExecution } from "@/inngest/utils";
 
 /**
  * Google Form webhook handler.
- * Receives form submission data from the Google Apps Script bridge and triggers 
+ * Receives form submission data from the Google Apps Script bridge and triggers
  * the associated workflow execution via Inngest.
  *
  * @author Maruf Bepary
  * @param request - The incoming webhook request containing form data.
  * @returns A JSON response indicating the success or failure of the triggering operation.
  */
+import { logger } from "@/lib/logger";
+
 export async function POST(request: NextRequest) {
   try {
     const url = new URL(request.url);
@@ -47,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    console.error("Google form webhook error:", error);
+    logger.error("Google form webhook error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to process Google Form submission" },
       { status: 500 },

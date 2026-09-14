@@ -8,15 +8,19 @@ import {
   TrashIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   Empty,
   EmptyContent,
@@ -24,8 +28,9 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "./ui/empty";
-import { Input } from "./ui/input";
+} from "@/components/ui/empty";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 type EntityHeaderProps = {
   title: string;
@@ -41,7 +46,7 @@ type EntityHeaderProps = {
 
 /**
  * A reusable header for entity list pages, showing a title, description, and an optional "New" action button.
- * 
+ *
  * @author Maruf Bepary
  * @param title The main heading text for the header.
  * @param description Optional subtext providing details about the entity.
@@ -98,7 +103,7 @@ type EntityContainerProps = {
 
 /**
  * A layout wrapper for entity-related content, providing consistent padding, alignment, and optional slots for headers, search, and pagination.
- * 
+ *
  * @author Maruf Bepary
  * @param children The main content of the container.
  * @param header Optional header component to display at the top.
@@ -134,7 +139,7 @@ interface EntitySearchProps {
 
 /**
  * A search input component specifically styled for entity list pages with a search icon and bounded width.
- * 
+ *
  * @author Maruf Bepary
  * @param value The current search query string.
  * @param onChange Callback triggered when the search input value changes.
@@ -168,7 +173,7 @@ interface EntityPaginationProps {
 
 /**
  * Pagination controls for navigating through paginated entity lists.
- * 
+ *
  * @author Maruf Bepary
  * @param page The current active page number.
  * @param totalPages The total number of available pages.
@@ -215,7 +220,7 @@ interface StateViewProps {
 
 /**
  * A centered loading state display with a spinner and optional message.
- * 
+ *
  * @author Maruf Bepary
  * @param message Optional message text to display below the spinner.
  * @returns The rendered loading view.
@@ -231,7 +236,7 @@ export const LoadingView = ({ message }: StateViewProps) => {
 
 /**
  * A centered error state display with an alert icon and optional message.
- * 
+ *
  * @author Maruf Bepary
  * @param message Optional error message text to display.
  * @returns The rendered error view.
@@ -251,7 +256,7 @@ interface EmptyViewProps extends StateViewProps {
 
 /**
  * A placeholder view shown when there are no entities to display, featuring an icon and optional call-to-action.
- * 
+ *
  * @author Maruf Bepary
  * @param message Optional description of the empty state.
  * @param onNew Optional callback for the action button to add a new item.
@@ -286,7 +291,7 @@ interface EntityListProps<T> {
 
 /**
  * A flexible list component that handles empty states and maps over entity items with a custom renderer.
- * 
+ *
  * @author Maruf Bepary
  * @param items The array of data items to render.
  * @param renderItem Function that returns the React node for each item.
@@ -334,7 +339,7 @@ interface EntityItemProps {
 
 /**
  * A standard card-styled item for entity lists, supporting images, metadata, navigation, and a removal action.
- * 
+ *
  * @author Maruf Bepary
  * @param href The destination URL linked to the item card.
  * @param title The primary title of the item.

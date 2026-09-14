@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { env } from "@/lib/env";
-import { generateGoogleFormScript } from "./utils";
+import { env } from "@/config/env";
+import { generateGoogleFormScript } from "@/features/triggers/components/google-form-trigger/utils";
 
 interface Props {
   open: boolean;

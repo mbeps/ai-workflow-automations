@@ -6,14 +6,14 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useCredentialsParams } from "@/features/credentials/hooks/use-credentials-params";
 import { useTRPC } from "@/trpc/client";
-import { useCredentialsParams } from "./use-credentials-params";
 
 /**
  * Hook to fetch all credentials with suspense for pagination and search.
  * Reads page, pageSize, and search from URL parameters via `useCredentialsParams`.
  * Throws promise until data loads; use with `<Suspense>` boundary.
- * 
+ *
  * @returns Query result with credentials array, pagination metadata, and isFetching state.
  * @author Maruf Bepary
  */
@@ -28,7 +28,7 @@ export const useSuspenseCredentials = () => {
  * Hook to create a new credential (OpenAI, Anthropic, Gemini, or OpenRouter).
  * Encrypts API key at rest; success toast shows credential name; invalidates list cache.
  * Premium subscription required (enforced by backend `premiumProcedure`).
- * 
+ *
  * @returns Mutation object with mutateAsync, isPending, and error states.
  * @author Maruf Bepary
  */
@@ -55,7 +55,7 @@ export const useCreateCredential = () => {
  * Hook to delete a credential by ID.
  * Invalidates both list and detail caches after successful deletion.
  * Shows success toast with credential name; handles error silently.
- * 
+ *
  * @returns Mutation object with mutate/mutateAsync and isPending state.
  * @author Maruf Bepary
  */
@@ -82,7 +82,7 @@ export const useRemoveCredential = () => {
  * Hook to fetch a single credential by ID with suspense.
  * Decrypted plaintext API key returned from server; use only in trusted contexts.
  * Throws promise until data loads; use with `<Suspense>` boundary.
- * 
+ *
  * @param id - The credential ID to fetch.
  * @returns Query result with credential object and isFetching state.
  * @author Maruf Bepary
@@ -96,7 +96,7 @@ export const useSuspenseCredential = (id: string) => {
  * Hook to update a credential's name, type, or API key.
  * Encrypts updated API key at rest; invalidates both list and detail caches.
  * Success toast shows updated credential name; displays error on failure.
- * 
+ *
  * @returns Mutation object with mutateAsync, isPending, and error states.
  * @author Maruf Bepary
  */
@@ -126,7 +126,7 @@ export const useUpdateCredential = () => {
  * Hook to fetch credentials filtered by type (OpenAI, Anthropic, Gemini, OpenRouter).
  * Used in workflow editor to populate credential selector dropdowns for each AI node.
  * Returns credentials ordered by update time (most recent first).
- * 
+ *
  * @param type - The credential type to filter by.
  * @returns Query result with filtered credentials array.
  * @author Maruf Bepary

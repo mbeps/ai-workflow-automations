@@ -1,9 +1,9 @@
 import { checkout, polar, portal } from "@polar-sh/better-auth";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { env } from "@/config/env";
 import prisma from "@/lib/db";
-import { env } from "@/lib/env";
-import { polarClient } from "./polar";
+import { polarClient } from "@/lib/polar";
 
 /**
  * Better Auth configuration instance.
@@ -15,6 +15,8 @@ import { polarClient } from "./polar";
  * @see {@link https://www.better-auth.com/docs|Better Auth Docs}
  */
 export const auth = betterAuth({
+  secret: env.BETTER_AUTH_SECRET,
+  baseURL: env.BETTER_AUTH_URL,
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),

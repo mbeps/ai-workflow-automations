@@ -6,7 +6,7 @@
  * Provides HTTP batch link to /api/trpc endpoint with superjson serialization.
  * Maintains singleton QueryClient in browser to avoid React suspension issues.
  * TRPCReactProvider mounts in root layout; useTRPC hook queries from client components.
- * 
+ *
  * @author Maruf Bepary
  */
 
@@ -16,9 +16,9 @@ import { createTRPCClient, httpBatchLink } from "@trpc/client";
 import { createTRPCContext } from "@trpc/tanstack-react-query";
 import { useState } from "react";
 import superjson from "superjson";
-import { env } from "@/lib/env";
-import { makeQueryClient } from "./query-client";
-import type { AppRouter } from "./routers/_app";
+import { env } from "@/config/env";
+import { makeQueryClient } from "@/trpc/query-client";
+import type { AppRouter } from "@/trpc/routers/_app";
 
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
 let browserQueryClient: QueryClient;

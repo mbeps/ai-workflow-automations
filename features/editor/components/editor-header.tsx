@@ -5,7 +5,7 @@
  * Displays breadcrumbs, editable workflow name, and save button.
  * EditorSaveButton: Persists node and edge changes from React Flow canvas to database.
  * EditorNameInput: Inline name editor with keyboard shortcuts (Enter/Escape).
- * 
+ *
  * @author Maruf Bepary
  */
 
@@ -23,13 +23,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { ROUTES } from "@/config/routes";
+import { editorAtom } from "@/features/editor/store/atoms";
 import {
   useSuspenseWorkflow,
   useUpdateWorkflow,
   useUpdateWorkflowName,
 } from "@/features/workflows/hooks/use-workflows";
-import { ROUTES } from "@/routes";
-import { editorAtom } from "../store/atoms";
 
 export const EditorSaveButton = ({ workflowId }: { workflowId: string }) => {
   const editor = useAtomValue(editorAtom);

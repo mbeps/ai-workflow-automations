@@ -3,7 +3,7 @@
 import { NodeToolbar, Position } from "@xyflow/react";
 import { SettingsIcon, TrashIcon } from "lucide-react";
 import type { ReactNode } from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 interface WorkflowNodeProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ interface WorkflowNodeProps {
 
 /**
  * A generic wrapper for workflow nodes on the canvas, providing a toolbar for settings/deletion and labels for name/description.
- * 
+ *
  * @author Maruf Bepary
  * @param children The main content of the node (inherited from React Flow).
  * @param showToolbar Whether to display the action toolbar on hover.

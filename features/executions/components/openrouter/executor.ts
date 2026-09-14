@@ -5,8 +5,7 @@ import { NonRetriableError } from "inngest";
 import { openrouterChannel } from "@/inngest/channels/openrouter";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
-
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type OpenRouterData = {
   variableName?: string;
@@ -94,9 +93,9 @@ export const openRouterExecutor: NodeExecutor<OpenRouterData> = async ({
       generateText,
       {
         model: openrouter("nvidia/nemotron-3-super-120b-a12b:free"),
-        system: systemPrompt,
+        instructions: systemPrompt,
         prompt: userPrompt,
-        experimental_telemetry: {
+        telemetry: {
           isEnabled: true,
           recordInputs: true,
           recordOutputs: true,

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { TRPCError } from '@trpc/server';
 
-import { prismaMock } from '../../../../__tests__/__mocks__/prisma';
-import '../../../../__tests__/__mocks__/encryption';
+import { prismaMock } from '@/__tests__/__mocks__/prisma';
+import '@/__tests__/__mocks__/encryption';
 import { appRouter } from '@/trpc/routers/_app';
 
 describe('credentialsRouter', () => {
@@ -100,5 +101,34 @@ describe('credentialsRouter', () => {
       orderBy: { updatedAt: 'desc' },
     });
     expect(result).toHaveLength(1);
+  });
+
+  it("getOne of another user's credential surfaces Prisma not-found as INTERNAL_SERVER_ERROR", async () => {
+    // ponytail: userId scoping in the where clause is the ownership guard;
+    // the mock simulates Prisma's P2025 rejection for a foreign row.
+    const input = { id: 'cred_other' };
+    prismaMock.credential.findUniqueOrThrow.mockRejectedValue(
+      new Error('Record to access not found'),
+    );
+
+    await expect(caller.credentials.getOne(input)).rejects.toThrow(TRPCError);
+    await expect(caller.credentials.getOne(input)).rejects.toMatchObject({
+      code: 'INTERNAL_SERVER_ERROR',
+    });
+    expect(prismaMock.credential.findUniqueOrThrow).toHaveBeenCalledWith({
+      where: { id: 'cred_other', userId: 'user_123' },
+    });
+  });
+
+  it('getByType should filter by both type and userId', async () => {
+    prismaMock.credential.findMany.mockResolvedValue([]);
+
+    await caller.credentials.getByType({ type: 'ANTHROPIC' as any });
+
+    expect(prismaMock.credential.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: { type: 'ANTHROPIC', userId: 'user_123' },
+      }),
+    );
   });
 });

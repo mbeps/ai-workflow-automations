@@ -5,8 +5,7 @@ import { NonRetriableError } from "inngest";
 import { geminiChannel } from "@/inngest/channels/gemini";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
-
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 type GeminiData = {
   variableName?: string;
@@ -91,9 +90,9 @@ export const geminiExecutor: NodeExecutor<GeminiData> = async ({
   try {
     const { steps } = await step.ai.wrap("gemini-generate-text", generateText, {
       model: google("gemini-2.0-flash"),
-      system: systemPrompt,
+      instructions: systemPrompt,
       prompt: userPrompt,
-      experimental_telemetry: {
+      telemetry: {
         isEnabled: true,
         recordInputs: true,
         recordOutputs: true,

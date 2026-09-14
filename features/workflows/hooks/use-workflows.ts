@@ -4,8 +4,8 @@ import {
   useSuspenseQuery,
 } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useWorkflowsParams } from "@/features/workflows/hooks/use-workflows-params";
 import { useTRPC } from "@/trpc/client";
-import { useWorkflowsParams } from "./use-workflows-params";
 
 /**
  * Fetches all workflows with suspense for list page.

@@ -5,7 +5,7 @@ import { NonRetriableError } from "inngest";
 import { anthropicChannel } from "@/inngest/channels/anthropic";
 import prisma from "@/lib/db";
 import { decrypt } from "@/lib/encryption";
-import type { NodeExecutor } from "@/types/node-executor";
+import type { NodeExecutor } from "@/types/executions/node-executor";
 
 Handlebars.registerHelper("json", (context) => {
   const jsonString = JSON.stringify(context, null, 2);
@@ -100,9 +100,9 @@ export const anthropicExecutor: NodeExecutor<AnthropicData> = async ({
       generateText,
       {
         model: anthropic("claude-sonnet-4-5"),
-        system: systemPrompt,
+        instructions: systemPrompt,
         prompt: userPrompt,
-        experimental_telemetry: {
+        telemetry: {
           isEnabled: true,
           recordInputs: true,
           recordOutputs: true,

@@ -1,12 +1,12 @@
 import { createId } from "@paralleldrive/cuid2";
 import type { Connection, Node } from "@prisma/client";
 import toposort from "toposort";
-import { inngest } from "./client";
+import { inngest } from "@/inngest/client";
 
 /**
  * Topologically sorts nodes based on their connections to determine execution order.
  * Throws an error if a cycle is detected.
- * 
+ *
  * @param nodes List of nodes in the workflow.
  * @param connections List of directed connections between nodes.
  * @returns An array of nodes in topological order.
@@ -55,18 +55,20 @@ export const topologicalSort = (
 
   // Map sorted IDs back to node objects
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
-  return sortedNodeIds.map((id) => nodeMap.get(id)!).filter(Boolean);
+  return sortedNodeIds
+    .map((id) => nodeMap.get(id))
+    .filter((node): node is Node => node !== undefined);
 };
 
 /**
  * Sends a workflow execution event to Inngest.
- * 
+ *
  * @param data Data containing workflowId and initial context.
  * @author Maruf Bepary
  */
 export const sendWorkflowExecution = async (data: {
   workflowId: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   return inngest.send({
     name: "workflows/execute.workflow",

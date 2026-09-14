@@ -7,7 +7,7 @@
  */
 
 import { createLoader } from "nuqs/server";
-import { executionsParams } from "../params";
+import { executionsParams } from "@/features/executions/params";
 
 /**
  * Loader instance for parsing execution list parameters from query string.
